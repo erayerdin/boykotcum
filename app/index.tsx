@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import { Stack } from "expo-router";
+import { Text, View } from "react-native";
 
-export default function RootLayout() {
+export default function Home() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ title: "Home" }} />
-    </Stack>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text>Welcome to My Clean Expo App!</Text>
+    </View>
   );
 }
