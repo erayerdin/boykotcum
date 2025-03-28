@@ -15,12 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import { Text, View } from "react-native";
+import { Redirect } from "expo-router";
 
 export default function Home() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Welcome to My Clean Expo App!</Text>
-    </View>
-  );
+  return <Redirect href="/camera" />;
 }
