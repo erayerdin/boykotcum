@@ -15,62 +15,70 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import { Camera, CameraView } from "expo-camera";
-import * as ImagePicker from "expo-image-picker";
-import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { CameraView, useCameraPermissions } from "expo-camera";
+import { useRef, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CameraScreen = () => {
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-  const [cameraReady, setCameraReady] = useState(false);
+  const [permission, requestPermission] = useCameraPermissions();
+  const cameraRef = useRef<CameraView>(null);
+  const [isTakingPhoto, setIsTakingPhoto] = useState(false);
 
-  // Request camera permissions on mount
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
+  if (!permission) {
+    return <View style={styles.container} />;
+  }
 
-      // Optional: Also request media library permissions if needed
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
-    })();
-  }, []);
+  if (!permission.granted) {
+    return (
+      <View style={styles.permissionContainer}>
+        <Text style={styles.permissionText}>
+          We need camera permission to continue
+        </Text>
+        <TouchableOpacity
+          style={styles.permissionButton}
+          onPress={requestPermission}
+        >
+          <Text style={styles.permissionButtonText}>Grant Permission</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
-  // Auto-open camera when permissions are granted
-  useEffect(() => {
-    if (hasPermission && cameraReady) {
-      // You could add a small delay for better UX
-      const timer = setTimeout(() => {
-        // Camera is ready to use
-      }, 500);
-      return () => clearTimeout(timer);
+  const takePhoto = async () => {
+    if (cameraRef.current && !isTakingPhoto) {
+      setIsTakingPhoto(true);
+      try {
+        const photo = await cameraRef.current.takePictureAsync({
+          quality: 0.8,
+          skipProcessing: true,
+        });
+        console.log("Photo taken:", photo?.uri);
+      } finally {
+        setIsTakingPhoto(false);
+      }
     }
-  }, [hasPermission, cameraReady]);
-
-  if (hasPermission === null) {
-    return (
-      <View style={styles.container}>
-        <Text>Requesting permissions...</Text>
-      </View>
-    );
-  }
-
-  if (hasPermission === false) {
-    return (
-      <View style={styles.container}>
-        <Text>No access to camera</Text>
-      </View>
-    );
-  }
+  };
 
   return (
     <View style={styles.container}>
       <CameraView
+        ref={cameraRef}
         style={styles.camera}
         facing="back"
-        onCameraReady={() => setCameraReady(true)}
+        enableTorch={false}
+        onCameraReady={() => console.log("Camera ready")}
       >
-        <View style={styles.overlay}>
-          <Text style={styles.text}>Camera Active</Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={[
+              styles.captureButton,
+              isTakingPhoto && styles.captureButtonDisabled,
+            ]}
+            onPress={takePhoto}
+            disabled={isTakingPhoto}
+          >
+            <View style={styles.innerCircle} />
+          </TouchableOpacity>
         </View>
       </CameraView>
     </View>
@@ -80,20 +88,56 @@ const CameraScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "black",
   },
   camera: {
     flex: 1,
   },
-  overlay: {
+  permissionContainer: {
     flex: 1,
-    backgroundColor: "transparent",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
+    padding: 20,
   },
-  text: {
+  permissionText: {
     color: "white",
     fontSize: 18,
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  permissionButton: {
+    backgroundColor: "#007AFF",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+  },
+  permissionButtonText: {
+    color: "white",
+    fontSize: 16,
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: 50,
+    alignSelf: "center",
+  },
+  captureButton: {
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    borderRadius: 50,
+    width: 80,
+    height: 80,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 3,
+    borderColor: "white",
+  },
+  captureButtonDisabled: {
+    opacity: 0.5,
+  },
+  innerCircle: {
+    backgroundColor: "white",
+    borderRadius: 30,
+    width: 60,
+    height: 60,
   },
 });
 
