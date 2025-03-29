@@ -15,12 +15,50 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
+import { readAsBase64 } from "@/actions/fs";
+import { generateChatCompletion } from "@/actions/openrouter";
+import { Models } from "@/constants/Models";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function PhotoScreen() {
   const { photo } = useLocalSearchParams<{ photo: string }>();
+  const [response, setResponse] = useState("Generating...");
+
+  useEffect(() => {
+    (async () => {
+      const fileb64 = await readAsBase64(photo);
+      if (!fileb64) {
+        console.error("Failed to read file as base64");
+        return;
+      }
+
+      const data = await generateChatCompletion({
+        model: Models.Gemini25ProExp,
+        apiKey: process.env.EXPO_PUBLIC_OR_KEY!,
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "image_url",
+                image_url: {
+                  url: fileb64,
+                },
+              },
+              {
+                type: "text",
+                text: "What is in this image?",
+              },
+            ],
+          },
+        ],
+      });
+      setResponse(data.choices[0].message.content);
+    })();
+  }, []);
 
   if (!photo) {
     return (
@@ -46,6 +84,7 @@ export default function PhotoScreen() {
           <Ionicons name="arrow-back" size={24} color="white" />
           <Text style={styles.buttonText}>Retake</Text>
         </TouchableOpacity>
+        <Text style={styles.buttonText}>{response}</Text>
       </View>
     </View>
   );
