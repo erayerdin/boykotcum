@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import { OpenRouter } from "@/constants/OpenRouter";
+import { OpenRouterURL } from "@/constants/OpenRouter";
 import { CompletionsResponse } from "@/types";
 
 type GenerateCompletionParams = {
@@ -40,7 +40,7 @@ const generateCompletion = async ({
       prompt,
     }),
   };
-  const response = await fetch(OpenRouter.completionsUrl, options);
+  const response = await fetch(OpenRouterURL.completionsUrl, options);
   const data: CompletionsResponse = await response.json();
   return data;
 };

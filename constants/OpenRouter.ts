@@ -17,7 +17,7 @@
 
 const baseUrl = "https://openrouter.ai/api/v1";
 
-export const OpenRouter = {
+export const OpenRouterURL = {
   baseUrl,
   completionsUrl: `${baseUrl}/completions`,
 };
