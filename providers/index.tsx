@@ -17,4 +17,18 @@
 
 import OpenRouterModelProvider from "./OpenRouterModelProvider";
 
-export { OpenRouterModelProvider };
+import React, { FC, ReactNode } from "react";
+
+type GlobalProvidersProps = {
+  children: ReactNode;
+};
+
+const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
+  return (
+    <OpenRouterModelProvider modelName="google/gemini-2.5-pro-exp-03-25:free">
+      {children}
+    </OpenRouterModelProvider>
+  );
+};
+
+export default GlobalProviders;
