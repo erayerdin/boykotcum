@@ -20,4 +20,5 @@ const baseUrl = "https://openrouter.ai/api/v1";
 export const OpenRouterURL = {
   baseUrl,
   completionsUrl: `${baseUrl}/completions`,
+  chatCompletionsUrl: `${baseUrl}/chat/completions`,
 };
