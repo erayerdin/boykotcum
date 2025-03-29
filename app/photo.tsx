@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
+import { Models } from "@/constants/Models";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
@@ -34,7 +35,7 @@ export default function PhotoScreen() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "google/gemini-2.5-pro-exp-03-25:free",
+          model: Models.Gemini25ProExp,
           prompt: "Hello.",
         }),
       };
