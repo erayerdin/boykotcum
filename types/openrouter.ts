@@ -21,17 +21,22 @@ export type CompletionsResponse = {
   }[];
 };
 
-export type ChatMessage = {
-  role: "user";
-  content:
-    | {
-        type: "text";
-        text: string;
-      }
-    | {
-        type: "image_url";
-        image_url: {
-          url: string;
-        };
-      };
-};
+export type ChatMessage =
+  | {
+      role: "user";
+      content:
+        | {
+            type: "text";
+            text: string;
+          }
+        | {
+            type: "image_url";
+            image_url: {
+              url: string;
+            };
+          };
+    }
+  | {
+      role: "assistant";
+      content: string;
+    };
