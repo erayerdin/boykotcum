@@ -17,10 +17,33 @@
 
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function PhotoScreen() {
   const { photo } = useLocalSearchParams<{ photo: string }>();
+  const [response, setResponse] = useState("Generating...");
+
+  useEffect(() => {
+    (async () => {
+      const url = "https://openrouter.ai/api/v1/completions";
+      const options = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.EXPO_PUBLIC_OR_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "google/gemini-2.5-pro-exp-03-25:free",
+          prompt: "Hello.",
+        }),
+      };
+      const response = await fetch(url, options);
+      const data = await response.json();
+      console.log("data", data);
+      setResponse(data.choices[0].text);
+    })();
+  }, []);
 
   if (!photo) {
     return (
@@ -46,6 +69,7 @@ export default function PhotoScreen() {
           <Ionicons name="arrow-back" size={24} color="white" />
           <Text style={styles.buttonText}>Retake</Text>
         </TouchableOpacity>
+        <Text style={styles.buttonText}>{response}</Text>
       </View>
     </View>
   );
