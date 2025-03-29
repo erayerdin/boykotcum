@@ -16,6 +16,7 @@
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
 import { Stack } from "expo-router";
+import "../global.css";
 
 export default function RootLayout() {
   return (
