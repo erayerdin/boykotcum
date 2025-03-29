@@ -16,55 +16,11 @@
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
 import { Ionicons } from "@expo/vector-icons";
-import * as MediaLibrary from "expo-media-library";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
-import {
-  Image,
-  Share,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function PhotoScreen() {
   const { photo } = useLocalSearchParams<{ photo: string }>();
-  const [isSaving, setIsSaving] = useState(false);
-
-  const handleSave = async () => {
-    if (!photo) return;
-
-    setIsSaving(true);
-    try {
-      const { status } = await MediaLibrary.requestPermissionsAsync();
-      if (status !== "granted") {
-        alert("Permission to access media library is required!");
-        return;
-      }
-
-      await MediaLibrary.saveToLibraryAsync(photo);
-      alert("Photo saved to gallery!");
-    } catch (error) {
-      console.error("Save error:", error);
-      alert("Failed to save photo!");
-    } finally {
-      setIsSaving(false);
-    }
-  };
-
-  const handleShare = async () => {
-    if (!photo) return;
-
-    try {
-      await Share.share({
-        url: photo,
-        message: "Check out this photo I took!",
-      });
-    } catch (error) {
-      console.error("Share error:", error);
-    }
-  };
 
   if (!photo) {
     return (
@@ -86,37 +42,9 @@ export default function PhotoScreen() {
       />
 
       <View style={styles.buttonRow}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => router.back()}
-          disabled={isSaving}
-        >
+        <TouchableOpacity style={styles.button} onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={24} color="white" />
           <Text style={styles.buttonText}>Retake</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleSave}
-          disabled={isSaving}
-        >
-          <Ionicons
-            name={isSaving ? "cloud-upload" : "save"}
-            size={24}
-            color="white"
-          />
-          <Text style={styles.buttonText}>
-            {isSaving ? "Saving..." : "Save"}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleShare}
-          disabled={isSaving}
-        >
-          <Ionicons name="share-social" size={24} color="white" />
-          <Text style={styles.buttonText}>Share</Text>
         </TouchableOpacity>
       </View>
     </View>
