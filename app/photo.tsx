@@ -15,7 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import { generateCompletion } from "@/actions/openrouter";
+import { readAsBase64 } from "@/actions/fs";
+import { generateChatCompletion } from "@/actions/openrouter";
 import { Models } from "@/constants/Models";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
@@ -28,12 +29,34 @@ export default function PhotoScreen() {
 
   useEffect(() => {
     (async () => {
-      const data = await generateCompletion({
+      const fileb64 = await readAsBase64(photo);
+      if (!fileb64) {
+        console.error("Failed to read file as base64");
+        return;
+      }
+
+      const data = await generateChatCompletion({
         model: Models.Gemini25ProExp,
         apiKey: process.env.EXPO_PUBLIC_OR_KEY!,
-        prompt: "Hello.",
+        messages: [
+          {
+            role: "user",
+            content: [
+              {
+                type: "image_url",
+                image_url: {
+                  url: fileb64,
+                },
+              },
+              {
+                type: "text",
+                text: "What is in this image?",
+              },
+            ],
+          },
+        ],
       });
-      setResponse(data.choices[0].text);
+      setResponse(data.choices[0].message.content);
     })();
   }, []);
 
