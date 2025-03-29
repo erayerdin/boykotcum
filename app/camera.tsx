@@ -16,6 +16,7 @@
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
 import { CameraView, useCameraPermissions } from "expo-camera";
+import { router } from "expo-router";
 import { useRef, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -53,6 +54,13 @@ const CameraScreen = () => {
           skipProcessing: true,
         });
         console.log("Photo taken:", photo?.uri);
+        if (photo === undefined) {
+          throw new Error("Photo is undefined despite being taken.");
+        }
+        router.push({
+          pathname: "/photo",
+          params: { photo: photo.uri },
+        });
       } finally {
         setIsTakingPhoto(false);
       }
