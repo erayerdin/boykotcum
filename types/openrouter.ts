@@ -29,7 +29,7 @@ export type ChatCompletionsResponse = {
 
 type UserChatMessage = {
   role: "user";
-  content:
+  content: (
     | {
         type: "text";
         text: string;
@@ -39,7 +39,8 @@ type UserChatMessage = {
         image_url: {
           url: string;
         };
-      };
+      }
+  )[];
 };
 
 type AssistantChatMessage = {
