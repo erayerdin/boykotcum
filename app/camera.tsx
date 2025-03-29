@@ -33,13 +33,13 @@ const CameraScreen = () => {
     return (
       <View style={styles.permissionContainer}>
         <Text style={styles.permissionText}>
-          We need camera permission to continue
+          Devam edebilmemiz için kamera iznine ihtiyacımız var.
         </Text>
         <TouchableOpacity
           style={styles.permissionButton}
           onPress={requestPermission}
         >
-          <Text style={styles.permissionButtonText}>Grant Permission</Text>
+          <Text style={styles.permissionButtonText}>İzin Ver</Text>
         </TouchableOpacity>
       </View>
     );
