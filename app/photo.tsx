@@ -84,7 +84,7 @@ export default function PhotoScreen() {
           <Ionicons name="arrow-back" size={24} color="white" />
           <Text style={styles.buttonText}>Retake</Text>
         </TouchableOpacity>
-        <Text style={styles.buttonText}>{response}</Text>
+        <Text className="text-red-500 mt-5 text-sm">{response}</Text>
       </View>
     </View>
   );
