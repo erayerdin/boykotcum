@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
+import { generateCompletion } from "@/actions/openrouter";
 import { Models } from "@/constants/Models";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
@@ -27,21 +28,11 @@ export default function PhotoScreen() {
 
   useEffect(() => {
     (async () => {
-      const url = "https://openrouter.ai/api/v1/completions";
-      const options = {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.EXPO_PUBLIC_OR_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: Models.Gemini25ProExp,
-          prompt: "Hello.",
-        }),
-      };
-      const response = await fetch(url, options);
-      const data = await response.json();
-      console.log("data", data);
+      const data = await generateCompletion({
+        model: Models.Gemini25ProExp,
+        apiKey: process.env.EXPO_PUBLIC_OR_KEY!,
+        prompt: "Hello.",
+      });
       setResponse(data.choices[0].text);
     })();
   }, []);
