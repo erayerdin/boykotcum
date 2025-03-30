@@ -15,17 +15,30 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import { FC } from "react";
-import { useGenAI } from "./GenAIProvider";
-import KeyProvider, { useKeyProvider } from "./KeyProvider";
+import { GoogleGenAI } from "@google/genai";
+import { createContext, FC, ReactNode, useContext } from "react";
+import { useKeyProvider } from "./KeyProvider";
 
-type GlobalProvidersProps = {
-  children: React.ReactNode;
+const GenAIContext = createContext<GoogleGenAI | null>(null);
+
+export const useGenAI = () => {
+  return useContext(GenAIContext);
 };
 
-const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
-  return <KeyProvider>{children}</KeyProvider>;
+type GenAIProviderProps = {
+  children: ReactNode;
 };
 
-export { useGenAI, useKeyProvider };
-export default GlobalProviders;
+const GenAIProvider: FC<GenAIProviderProps> = ({ children }) => {
+  const keys = useKeyProvider();
+
+  return (
+    <GenAIContext.Provider
+      value={keys ? new GoogleGenAI({ apiKey: keys.gemini }) : null}
+    >
+      {children}
+    </GenAIContext.Provider>
+  );
+};
+
+export default GenAIProvider;
