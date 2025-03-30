@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
+import { useKeyProvider } from "@/providers";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
@@ -24,6 +25,8 @@ const CameraScreen = () => {
   const [permission, requestPermission] = useCameraPermissions();
   const cameraRef = useRef<CameraView>(null);
   const [isTakingPhoto, setIsTakingPhoto] = useState(false);
+  const keys = useKeyProvider();
+  console.log(keys);
 
   if (!permission) {
     return <View style={styles.container} />;

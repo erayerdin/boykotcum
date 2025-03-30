@@ -15,17 +15,16 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import GlobalProviders from "@/providers";
-import { Stack } from "expo-router";
-import "../global.css";
+import { FC } from "react";
+import KeyProvider, { useKeyProvider } from "./KeyProvider";
 
-export default function RootLayout() {
-  return (
-    <GlobalProviders>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" options={{ title: "Home" }} redirect />
-        <Stack.Screen name="camera" options={{ title: "Camera" }} />
-      </Stack>
-    </GlobalProviders>
-  );
-}
+type GlobalProvidersProps = {
+  children: React.ReactNode;
+};
+
+const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
+  return <KeyProvider>{children}</KeyProvider>;
+};
+
+export { useKeyProvider };
+export default GlobalProviders;
