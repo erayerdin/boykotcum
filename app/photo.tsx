@@ -1,15 +1,46 @@
+import { listProducts } from "@/actions/boycott";
 import Card from "@/components/Card";
+import { useGenAI, useProducts } from "@/providers";
+import { Product } from "@/types";
 import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { router, useLocalSearchParams } from "expo-router";
-import { useCallback, useMemo, useRef, useState } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function PhotoScreen() {
   const { photo } = useLocalSearchParams<{ photo: string }>();
-  const [response, setResponse] = useState("Generating...");
   const bottomSheetRef = useRef<BottomSheet>(null);
+  const ai = useGenAI();
+  const [loading, setLoading] = useState(true);
+  const productList = useProducts();
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    if (!ai) {
+      console.warn("AI not initialized");
+      return;
+    }
+
+    (async () => {
+      setLoading(true);
+      const products = await listProducts({
+        ai,
+        products: productList,
+        imagePath: photo,
+      });
+      setProducts(products);
+      setLoading(false);
+    })();
+  }, []);
 
   const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
   const handleSheetChanges = useCallback((index: number) => {
@@ -53,17 +84,20 @@ export default function PhotoScreen() {
           index={0}
         >
           <BottomSheetView className="p-4">
-            <Text className="text-lg font-semibold">Analysis Result:</Text>
             <ScrollView className="mt-2">
-              <Card>
-                <Text>Hello</Text>
-              </Card>
-              <Card>
-                <Text>Hello</Text>
-              </Card>
-              <Card>
-                <Text>Hello</Text>
-              </Card>
+              {loading ? (
+                <ActivityIndicator size="large" color="#0000ff" />
+              ) : products.length === 0 ? (
+                <Text className="text-base text-center">
+                  Boykotlu ürün mevcut değil.
+                </Text>
+              ) : (
+                products.map((product, index) => (
+                  <Card key={index}>
+                    <Text className="text-base">{product.name}</Text>
+                  </Card>
+                ))
+              )}
             </ScrollView>
           </BottomSheetView>
         </BottomSheet>
