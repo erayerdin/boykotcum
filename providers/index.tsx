@@ -15,7 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import generateChatCompletion from "./generateChatCompletion";
-import generateCompletion from "./generateCompletion";
+import { FC } from "react";
+import GenAIProvider, { useGenAI } from "./GenAIProvider";
+import KeyProvider, { useKeyProvider } from "./KeyProvider";
 
-export { generateChatCompletion, generateCompletion };
+type GlobalProvidersProps = {
+  children: React.ReactNode;
+};
+
+const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
+  return (
+    <KeyProvider>
+      <GenAIProvider>{children}</GenAIProvider>
+    </KeyProvider>
+  );
+};
+
+export { useGenAI, useKeyProvider };
+export default GlobalProviders;
