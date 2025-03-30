@@ -15,16 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import {
-  ChatCompletionsResponse,
-  ChatMessage,
-  CompletionsResponse,
-} from "./openrouter";
-import Product from "./Product";
-
-export {
-  type ChatCompletionsResponse,
-  type ChatMessage,
-  type CompletionsResponse,
-  type Product,
+type Product = {
+  name: string;
+  description: string;
 };
+
+export default Product;

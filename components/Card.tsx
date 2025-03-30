@@ -15,16 +15,19 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import {
-  ChatCompletionsResponse,
-  ChatMessage,
-  CompletionsResponse,
-} from "./openrouter";
-import Product from "./Product";
+import React, { FC, ReactNode } from "react";
+import { View } from "react-native";
 
-export {
-  type ChatCompletionsResponse,
-  type ChatMessage,
-  type CompletionsResponse,
-  type Product,
+type CardProps = {
+  children: ReactNode;
 };
+
+const Card: FC<CardProps> = ({ children }) => {
+  return (
+    <View className="bg-gray-200 text-black font-bold p-4 rounded-md my-2">
+      {children}
+    </View>
+  );
+};
+
+export default Card;

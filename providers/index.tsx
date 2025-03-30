@@ -18,6 +18,7 @@
 import { FC } from "react";
 import GenAIProvider, { useGenAI } from "./GenAIProvider";
 import KeyProvider, { useKeyProvider } from "./KeyProvider";
+import ProductsProvider, { useProducts } from "./ProductsProvider";
 
 type GlobalProvidersProps = {
   children: React.ReactNode;
@@ -26,10 +27,12 @@ type GlobalProvidersProps = {
 const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
   return (
     <KeyProvider>
-      <GenAIProvider>{children}</GenAIProvider>
+      <GenAIProvider>
+        <ProductsProvider>{children}</ProductsProvider>
+      </GenAIProvider>
     </KeyProvider>
   );
 };
 
-export { useGenAI, useKeyProvider };
+export { useGenAI, useKeyProvider, useProducts };
 export default GlobalProviders;
