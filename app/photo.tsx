@@ -42,7 +42,7 @@ export default function PhotoScreen() {
     })();
   }, []);
 
-  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
+  const snapPoints = useMemo(() => ["25%", "90%"], []);
   const handleSheetChanges = useCallback((index: number) => {
     console.log("Sheet position changed:", index);
   }, []);
@@ -80,7 +80,8 @@ export default function PhotoScreen() {
           ref={bottomSheetRef}
           snapPoints={snapPoints}
           onChange={handleSheetChanges}
-          enablePanDownToClose={true}
+          enablePanDownToClose={false} // Disable swipe-to-close
+          enableContentPanningGesture={false} // Disable drag gestures
           index={0}
         >
           <BottomSheetView className="p-4">
