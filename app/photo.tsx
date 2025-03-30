@@ -93,11 +93,16 @@ export default function PhotoScreen() {
                   Boykotlu ürün mevcut değil.
                 </Text>
               ) : (
-                products.map((product, index) => (
-                  <Card key={index}>
-                    <Text className="text-base">{product.name}</Text>
-                  </Card>
-                ))
+                <>
+                  <Text className="text-lg font-bold mb-2">
+                    Boykotlu Ürünler
+                  </Text>
+                  {products.map((product, index) => (
+                    <Card key={index}>
+                      <Text className="text-base">{product.name}</Text>
+                    </Card>
+                  ))}
+                </>
               )}
             </ScrollView>
           </BottomSheetView>
