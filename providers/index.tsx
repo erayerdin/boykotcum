@@ -16,7 +16,7 @@
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
 import { FC } from "react";
-import { useGenAI } from "./GenAIProvider";
+import GenAIProvider, { useGenAI } from "./GenAIProvider";
 import KeyProvider, { useKeyProvider } from "./KeyProvider";
 
 type GlobalProvidersProps = {
@@ -24,7 +24,11 @@ type GlobalProvidersProps = {
 };
 
 const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
-  return <KeyProvider>{children}</KeyProvider>;
+  return (
+    <KeyProvider>
+      <GenAIProvider>{children}</GenAIProvider>
+    </KeyProvider>
+  );
 };
 
 export { useGenAI, useKeyProvider };
