@@ -16,7 +16,14 @@
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
 import { GoogleGenAI } from "@google/genai";
-import { createContext, FC, ReactNode, useContext } from "react";
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useKeyProvider } from "./KeyProvider";
 
 const GenAIContext = createContext<GoogleGenAI | null>(null);
@@ -30,14 +37,19 @@ type GenAIProviderProps = {
 };
 
 const GenAIProvider: FC<GenAIProviderProps> = ({ children }) => {
+  const [genAI, setGenAI] = useState<GoogleGenAI | null>(null);
   const keys = useKeyProvider();
 
+  useEffect(() => {
+    if (keys) {
+      setGenAI(new GoogleGenAI({ apiKey: keys.gemini }));
+    } else {
+      setGenAI(null);
+    }
+  }, [keys]);
+
   return (
-    <GenAIContext.Provider
-      value={keys ? new GoogleGenAI({ apiKey: keys.gemini }) : null}
-    >
-      {children}
-    </GenAIContext.Provider>
+    <GenAIContext.Provider value={genAI}>{children}</GenAIContext.Provider>
   );
 };
 
