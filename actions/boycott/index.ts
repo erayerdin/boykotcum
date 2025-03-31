@@ -16,5 +16,6 @@
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
 import detectProducts from "./detectProducts";
+import fetchBoycottProducts from "./fetchBoycottProducts";
 
-export { detectProducts };
+export { detectProducts, fetchBoycottProducts };
