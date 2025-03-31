@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1024"
+   height="1024"
+   viewBox="0 0 270.93333 270.93333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="icon-colored.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="0.74742565"
+     inkscape:cx="372.61231"
+     inkscape:cy="529.14963"
+     inkscape:window-width="1920"
+     inkscape:window-height="1021"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="2.1166666"
+       spacingy="2.1166666"
+       empcolor="#0099e5"
+       empopacity="0.36470588"
+       color="#e50000"
+       opacity="0.37254902"
+       empspacing="4"
+       enabled="true"
+       visible="true"
+       dotted="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient6"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#43e97b;stop-opacity:1;"
+         offset="0"
+         id="stop6" />
+      <stop
+         style="stop-color:#38f9d7;stop-opacity:1;"
+         offset="1"
+         id="stop7" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6"
+       id="linearGradient7"
+       x1="10.311788"
+       y1="83.625824"
+       x2="260.62152"
+       y2="187.30751"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+    <path
+       id="path1"
+       style="stroke-width:0.529166;fill:url(#linearGradient7)"
+       d="M 102.97563 16.933333 C 92.021885 16.933333 82.338122 23.91823 78.898542 34.289896 L 73.395519 50.799999 L 33.866666 50.799999 C 15.187085 50.799999 5.0132737e-15 65.987067 0 84.666666 L 0 220.13333 C 0 238.81291 15.187085 254 33.866666 254 L 237.06666 254 C 255.74624 254 270.93333 238.81291 270.93333 220.13333 L 270.93333 84.666666 C 270.93333 65.987067 255.74624 50.799999 237.06666 50.799999 L 197.53781 50.799999 L 192.03479 34.289896 C 188.59519 23.91823 178.91146 16.933333 167.9577 16.933333 L 102.97563 16.933333 z M 75.598485 56.610497 L 102.84333 83.855346 A 76.199997 76.199997 0 0 1 135.46666 76.199999 A 76.199997 76.199997 0 0 1 211.66666 152.4 A 76.199997 76.199997 0 0 1 204.21802 185.23004 L 231.25617 212.26818 L 195.33536 248.1895 L 168.29722 221.15136 A 76.199997 76.199997 0 0 1 135.46666 228.6 A 76.199997 76.199997 0 0 1 59.266666 152.4 A 76.199997 76.199997 0 0 1 66.922013 119.77563 L 39.677681 92.531302 L 75.598485 56.610497 z " />
+    <rect
+       style="fill:url(#linearGradient7);fill-opacity:1;stroke:none;stroke-width:0.529166;stroke-linecap:butt;stroke-linejoin:miter;font-variation-settings:normal;opacity:1;vector-effect:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="rect2"
+       width="41.596207"
+       height="211.66682"
+       x="-32.771946"
+       y="97.719002"
+       transform="rotate(-45)" />
+    <path
+       id="path2"
+       style="fill:url(#linearGradient7);fill-opacity:1;stroke:none;stroke-width:0.529166;stroke-linecap:butt;stroke-linejoin:miter;font-variation-settings:normal;opacity:1;vector-effect:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       d="M 135.46666 84.666666 A 67.73333 67.73333 0 0 0 109.11117 90.12318 L 197.74348 178.7555 A 67.73333 67.73333 0 0 0 203.2 152.4 A 67.73333 67.73333 0 0 0 135.46666 84.666666 z M 73.189847 126.0445 A 67.73333 67.73333 0 0 0 67.733332 152.4 A 67.73333 67.73333 0 0 0 135.46666 220.13333 A 67.73333 67.73333 0 0 0 161.82216 214.67682 L 73.189847 126.0445 z " />
+  </g>
+</svg>
