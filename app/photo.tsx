@@ -1,4 +1,4 @@
-import { listProducts } from "@/actions/boycott";
+import { detectProducts } from "@/actions/boycott";
 import Card from "@/components/Card";
 import { useGenAI, useProducts } from "@/providers";
 import { Product } from "@/types";
@@ -32,7 +32,7 @@ export default function PhotoScreen() {
 
     (async () => {
       setLoading(true);
-      const products = await listProducts({
+      const products = await detectProducts({
         ai,
         products: productList,
         imagePath: photo,
