@@ -44,9 +44,7 @@ const KeyProvider: FC<KeyProviderProps> = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(
-        "https://api.npoint.io/f292060961b27fbafd09"
-      );
+      const response = await fetch(process.env.EXPO_PUBLIC_KEY_URL as string);
       const data = await response.json();
       setGeminiKey(data.gemini);
     })();
