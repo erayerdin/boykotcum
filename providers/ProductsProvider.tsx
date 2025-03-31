@@ -14,6 +14,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
+import { fetchBoycottProducts } from "@/actions/boycott";
 import { Product } from "@/types";
 import { createContext, FC, useContext, useEffect, useState } from "react";
 
@@ -34,11 +35,10 @@ const ProductsProvider: FC<ProductsProviderProps> = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(
-        "https://api.npoint.io/6f7f9eaf9cb9b6f421b4"
-      );
-      const data = await response.json();
-      setProducts(data);
+      const products = await fetchBoycottProducts({
+        link: "https://api.npoint.io/6f7f9eaf9cb9b6f421b4",
+      });
+      setProducts(products);
     })();
   }, []);
 
