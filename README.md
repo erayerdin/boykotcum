@@ -1,50 +1,22 @@
-# Welcome to your Expo app 👋
+# Boykotçum
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Boykotçum, fotoğraf çekerek boykot edilen ürünleri tespit etmenizi sağlayan mobil bir uygulamadır.
 
-## Get started
+![Screenshot](https://i.ibb.co/m5PPFQMF/Screenshot-2025-03-31-12-29-26-652-com-erayerdin-boykotcum2.jpg)
 
-1. Install dependencies
+## Son Durum
 
-   ```bash
-   npm install
-   ```
+Uygulama şu an kapalı deneme sürecindedir. Google Play'in uygulamayı değerlendirme sürecinden sonra kamuya açık deneme sürecine geçecektir.
 
-2. Start the app
+## İhtiyaçlarımız
 
-   ```bash
-    npx expo start
-   ```
+- Uygulamayı kapalı deneme sürecinde test edecek insanlara ihtiyacımız bulunmaktadır.
+- Uygulamanın şu an halihazırda gerekli görsel medyaları (ikon, banner, ekran görüntüleri) bulunsa da daha kaliteli görseller için tasarımcıya ihtiyacımız bulunmaktadır.
+- Uygulama Gemini kullanmaktadır. Uygulamanın yapay zeka maliyetlerini karşılayabilecek bir bütçeye ihtiyacımız bulunmaktadır.
+- Uygulamanın daha nasıl geliştirilebileceğiyle ilgili fikirleri olan know-how'ı olan yazılımcılara ihtiyacımız gerekmektedir. (Ne tür teknolojiler kullandığımız zaten repodan anlaşılabilir.)
 
-In the output, you'll find options to open the app in a
+Ve daha burada saymadığımız pek çok yardıma ihtiyacımız olabilir. İletişim sağlamak için [Discord sunucumuz](https://discord.gg/zfWvgBVy)a katılabilirsiniz.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Lisans
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Uygulama [GNU Genel Kamu Lisansı 2. Sürüm](LICENSE) ile lisanslanmıştır.
