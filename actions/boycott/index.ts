@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import listProducts from "./listProducts";
+import detectProducts from "./detectProducts";
+import fetchBoycottProducts from "./fetchBoycottProducts";
 
-export { listProducts };
+export { detectProducts, fetchBoycottProducts };

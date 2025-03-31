@@ -31,7 +31,7 @@ type ListProductsParams = {
   imagePath: string;
 };
 
-const listProducts = async ({
+const detectProducts = async ({
   ai,
   products,
   imagePath,
@@ -62,4 +62,4 @@ const listProducts = async ({
   return data;
 };
 
-export default listProducts;
+export default detectProducts;
