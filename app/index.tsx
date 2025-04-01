@@ -15,20 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { useInitializer } from "@/providers";
 import { Redirect } from "expo-router";
-import { ActivityIndicator, View } from "react-native";
 
 export default function Home() {
-  const initializerState = useInitializer();
-
-  if (initializerState === "loading") {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator />
-      </View>
-    );
-  }
-
   return <Redirect href="/camera" />;
 }
