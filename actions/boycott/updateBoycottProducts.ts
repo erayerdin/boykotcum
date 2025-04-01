@@ -16,18 +16,31 @@
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
 import { Product } from "@/types";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Crypto from "expo-crypto";
 
-type BoycottPromptParams = {
-  products: Product[];
+type FetchBoycottProductsParams = {
+  link: string;
 };
 
-const boycottPrompt = ({ products }: BoycottPromptParams): string => {
-  return [
-    "Aşağıda JSON olarak bir ürün/marka listesi görmektesin.",
-    ["```", JSON.stringify(products), "```"].join("\n"),
-    "Sana bir görsel gönderiyorum. Bu görselde bir ürün/marka var mı? Varsa hangisi?",
-    "Bana JSON dizisi olarak cevap ver. Sana gönderdiğim ürün/marka listesinin formatına uymak zorunda.",
-  ].join("\n\n");
+const fetchBoycottProducts = async ({
+  link,
+}: FetchBoycottProductsParams): Promise<Product[]> => {
+  const id = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    link
+  );
+  const dataKey = `data-${id}`;
+  const expKey = `exp-${id}`;
+
+  const response = await fetch(link);
+  const data: Product[] = await response.json();
+  await AsyncStorage.setItem(dataKey, JSON.stringify(data));
+  await AsyncStorage.setItem(
+    expKey,
+    (Date.now() + 1000 * 60 * 60 * 24).toString()
+  );
+  return data;
 };
 
-export default boycottPrompt;
+export default fetchBoycottProducts;

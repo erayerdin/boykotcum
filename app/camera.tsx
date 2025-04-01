@@ -1,20 +1,21 @@
 // Copyright (C) 2025 Eray Erdin
 //
-// This file is part of boykotsepeti.
+// This file is part of Boykotçum.
 //
-// boykotsepeti is free software: you can redistribute it and/or modify
+// Boykotçum is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 2 of the License, or
 // (at your option) any later version.
 //
-// boykotsepeti is distributed in the hope that it will be useful,
+// Boykotçum is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
+// along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { Ionicons } from "@expo/vector-icons";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
@@ -76,6 +77,11 @@ const CameraScreen = () => {
         enableTorch={false}
         onCameraReady={() => console.log("Camera ready")}
       >
+        <View className="absolute top-4 right-4">
+          <TouchableOpacity onPress={() => router.push("/settings")}>
+            <Ionicons name="settings-outline" size={32} color="white" />
+          </TouchableOpacity>
+        </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[

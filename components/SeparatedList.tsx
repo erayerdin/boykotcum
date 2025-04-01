@@ -15,19 +15,30 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import React, { FC, ReactNode } from "react";
+import React from "react";
 import { View } from "react-native";
 
-type CardProps = {
-  children: ReactNode;
+type SeparatedListProps = {
+  children: React.ReactNode | React.ReactNode[];
 };
 
-const Card: FC<CardProps> = ({ children }) => {
+const SeparatedList = ({ children }: SeparatedListProps) => {
+  // Convert children to array if it's not already
+  const childrenArray = React.Children.toArray(children);
+
   return (
-    <View className="bg-gray-200 text-black font-bold p-4 rounded-md my-2">
-      {children}
+    <View>
+      {childrenArray.map((child, index) => (
+        <View key={index}>
+          <View className="p-4">{child}</View>
+          {/* Only show separator if not the last child AND there are multiple children */}
+          {index < childrenArray.length - 1 && childrenArray.length > 1 && (
+            <View className="h-px bg-gray-300" />
+          )}
+        </View>
+      ))}
     </View>
   );
 };
 
-export default Card;
+export default SeparatedList;
