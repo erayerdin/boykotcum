@@ -15,14 +15,17 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import SeparatedList from "@/components/SeparatedList";
 import { router } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
 
 const SettingsScreen = () => {
   return (
-    <View className="flex-1 gap-4 *:m-4">
-      <Text onPress={() => router.push("/settings/about")}>Hakkında</Text>
+    <View className="flex-1">
+      <SeparatedList>
+        <Text onPress={() => router.push("/settings/about")}>Hakkında</Text>
+      </SeparatedList>
     </View>
   );
 };
