@@ -16,10 +16,14 @@
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 const SettingsScreen = () => {
-  return <Text>SettingsScreen</Text>;
+  return (
+    <View className="flex-1">
+      <Text>SettingsScreen</Text>
+    </View>
+  );
 };
 
 export default SettingsScreen;

@@ -15,17 +15,15 @@
 // You should have received a copy of the GNU General Public License
 // along with boykotsepeti.  If not, see <https://www.gnu.org/licenses/>.
 
-import GlobalProviders from "@/providers";
 import { Stack } from "expo-router";
-import "../global.css";
+import React from "react";
 
-export default function RootLayout() {
+const SettingsLayout = () => {
   return (
-    <GlobalProviders>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" options={{ title: "Home" }} redirect />
-        <Stack.Screen name="camera" options={{ title: "Kamera" }} />
-      </Stack>
-    </GlobalProviders>
+    <Stack screenOptions={{ headerShown: true, title: "Ayarlar" }}>
+      <Stack.Screen name="index" options={{ title: "Ayarlar" }} />
+    </Stack>
   );
-}
+};
+
+export default SettingsLayout;
