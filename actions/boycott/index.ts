@@ -17,5 +17,6 @@
 
 import detectProducts from "./detectProducts";
 import fetchBoycottProducts from "./fetchBoycottProducts";
+import updateBoycottProducts from "./updateBoycottProducts";
 
-export { detectProducts, fetchBoycottProducts };
+export { detectProducts, fetchBoycottProducts, updateBoycottProducts };
