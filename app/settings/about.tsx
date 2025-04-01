@@ -15,16 +15,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { Stack } from "expo-router";
 import React from "react";
+import { Text, View } from "react-native";
 
-const SettingsLayout = () => {
+const AboutScreen = () => {
   return (
-    <Stack screenOptions={{ headerShown: true, title: "Ayarlar" }}>
-      <Stack.Screen name="index" options={{ title: "Ayarlar" }} />
-      <Stack.Screen name="about" options={{ title: "Hakkında" }} />
-    </Stack>
+    <View className="flex-1">
+      <Text>AboutScreen</Text>
+    </View>
   );
 };
 
-export default SettingsLayout;
+export default AboutScreen;
