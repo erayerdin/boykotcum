@@ -59,7 +59,12 @@ const detectProducts = async ({
   });
   const text = response.text!;
   const data: Product[] = JSON.parse(text);
-  return data;
+  return data.filter(
+    ({ name }) =>
+      products.findIndex(
+        ({ name: n }) => n.toLowerCase() === name.toLowerCase()
+      ) !== -1
+  );
 };
 
 export default detectProducts;
