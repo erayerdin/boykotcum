@@ -44,9 +44,14 @@ const KeyProvider: FC<KeyProviderProps> = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(process.env.EXPO_PUBLIC_KEY_URL as string);
-      const data = await response.json();
-      setGeminiKey(data.gemini);
+      try {
+        const response = await fetch(process.env.EXPO_PUBLIC_KEY_URL as string);
+        const data = await response.json();
+        setGeminiKey(data.gemini);
+      } catch (error) {
+        console.error("Error fetching keys:", error);
+        throw error;
+      }
     })();
   }, []);
 
