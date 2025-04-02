@@ -17,7 +17,6 @@
 
 import { FC } from "react";
 import GenAIProvider, { useGenAI } from "./GenAIProvider";
-import InitializerProvider, { useInitializer } from "./InitializerProvider";
 import KeyProvider, { useKeyProvider } from "./KeyProvider";
 import ProductsProvider, { useProducts } from "./ProductsProvider";
 
@@ -29,13 +28,11 @@ const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
   return (
     <KeyProvider>
       <GenAIProvider>
-        <ProductsProvider>
-          <InitializerProvider>{children}</InitializerProvider>
-        </ProductsProvider>
+        <ProductsProvider>{children}</ProductsProvider>
       </GenAIProvider>
     </KeyProvider>
   );
 };
 
-export { useGenAI, useInitializer, useKeyProvider, useProducts };
+export { useGenAI, useKeyProvider, useProducts };
 export default GlobalProviders;
