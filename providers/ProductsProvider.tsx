@@ -35,10 +35,15 @@ const ProductsProvider: FC<ProductsProviderProps> = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const products = await fetchBoycottProducts({
-        link: "https://api.npoint.io/6f7f9eaf9cb9b6f421b4",
-      });
-      setProducts(products);
+      try {
+        const products = await fetchBoycottProducts({
+          link: "https://api.npoint.io/6f7f9eaf9cb9b6f421b4",
+        });
+        setProducts(products);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+        throw error;
+      }
     })();
   }, []);
 
