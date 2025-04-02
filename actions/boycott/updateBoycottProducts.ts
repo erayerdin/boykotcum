@@ -16,6 +16,7 @@
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
 import { Product } from "@/types";
+import { safeFetch } from "@/utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Crypto from "expo-crypto";
 
@@ -33,7 +34,7 @@ const fetchBoycottProducts = async ({
   const dataKey = `data-${id}`;
   const expKey = `exp-${id}`;
 
-  const response = await fetch(link);
+  const response = await safeFetch(link);
   const data: Product[] = await response.json();
   await AsyncStorage.setItem(dataKey, JSON.stringify(data));
   await AsyncStorage.setItem(
