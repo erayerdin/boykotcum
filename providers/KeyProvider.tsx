@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { safeFetch } from "@/utils";
 import {
   createContext,
   FC,
@@ -44,7 +45,9 @@ const KeyProvider: FC<KeyProviderProps> = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(process.env.EXPO_PUBLIC_KEY_URL as string);
+      const response = await safeFetch(
+        process.env.EXPO_PUBLIC_KEY_URL as string
+      );
       const data = await response.json();
       setGeminiKey(data.gemini);
     })();
