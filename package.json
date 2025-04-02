@@ -1,7 +1,7 @@
 {
   "name": "boykotcum",
   "main": "expo-router/entry",
-  "version": "2.4.25.6",
+  "version": "2.4.25.7",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
