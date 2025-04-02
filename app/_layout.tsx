@@ -18,8 +18,16 @@
 import GlobalProviders from "@/providers";
 import { Stack } from "expo-router";
 import "../global.css";
+import * as Sentry from '@sentry/react-native';
 
-export default function RootLayout() {
+Sentry.init({
+  dsn: 'https://85a59e9583bd0af97bc2d35676f5a656@o1120242.ingest.us.sentry.io/4509082682458112',
+
+  // uncomment the line below to enable Spotlight (https://spotlightjs.com)
+  // spotlight: __DEV__,
+});
+
+export default Sentry.wrap(function RootLayout() {
   return (
     <GlobalProviders>
       <Stack screenOptions={{ headerShown: false }}>
@@ -28,4 +36,4 @@ export default function RootLayout() {
       </Stack>
     </GlobalProviders>
   );
-}
+});
