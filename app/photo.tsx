@@ -31,14 +31,19 @@ export default function PhotoScreen() {
     }
 
     (async () => {
-      setLoading(true);
-      const products = await detectProducts({
-        ai,
-        products: productList,
-        imagePath: photo,
-      });
-      setProducts(products);
-      setLoading(false);
+      try {
+        setLoading(true);
+        const products = await detectProducts({
+          ai,
+          products: productList,
+          imagePath: photo,
+        });
+        setProducts(products);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error detecting products:", error);
+        throw error;
+      }
     })();
   }, [ai, photo, productList]);
 
