@@ -40,7 +40,7 @@ export default function PhotoScreen() {
       setProducts(products);
       setLoading(false);
     })();
-  }, []);
+  }, [ai, photo, productList]);
 
   const snapPoints = useMemo(() => ["25%", "90%"], []);
   const handleSheetChanges = useCallback((index: number) => {
