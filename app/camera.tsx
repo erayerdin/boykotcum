@@ -15,21 +15,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { useInitializer } from "@/providers";
 import { Ionicons } from "@expo/vector-icons";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CameraScreen = () => {
-  const initializerState = useInitializer();
   const [permission, requestPermission] = useCameraPermissions();
   const cameraRef = useRef<CameraView>(null);
   const [isTakingPhoto, setIsTakingPhoto] = useState(false);
@@ -75,14 +67,6 @@ const CameraScreen = () => {
       }
     }
   };
-
-  if (initializerState === "loading") {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator size={"large"} />
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>

@@ -15,24 +15,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { FC } from "react";
-import GenAIProvider, { useGenAI } from "./GenAIProvider";
-import KeyProvider, { useKeyProvider } from "./KeyProvider";
-import ProductsProvider, { useProducts } from "./ProductsProvider";
+import safeFetch from "./safeFetch";
 
-type GlobalProvidersProps = {
-  children: React.ReactNode;
-};
-
-const GlobalProviders: FC<GlobalProvidersProps> = ({ children }) => {
-  return (
-    <KeyProvider>
-      <GenAIProvider>
-        <ProductsProvider>{children}</ProductsProvider>
-      </GenAIProvider>
-    </KeyProvider>
-  );
-};
-
-export { useGenAI, useKeyProvider, useProducts };
-export default GlobalProviders;
+export { safeFetch };
