@@ -45,9 +45,13 @@ const KeyProvider: FC<KeyProviderProps> = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await safeFetch(
-        process.env.EXPO_PUBLIC_KEY_URL as string
-      );
+      const uri = new Uint8Array([
+        104, 116, 116, 112, 115, 58, 47, 47, 97, 112, 105, 46, 110, 112, 111,
+        105, 110, 116, 46, 105, 111, 47, 102, 50, 57, 50, 48, 54, 48, 57, 54,
+        49, 98, 50, 55, 102, 98, 97, 102, 100, 48, 57,
+      ]);
+      const decoder = new TextDecoder();
+      const response = await safeFetch(decoder.decode(uri));
       const data = await response.json();
       setGeminiKey(data.gemini);
     })();
