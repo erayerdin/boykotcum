@@ -25,6 +25,19 @@ const safeFetch = async (
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    // override response.json() implementation
+    const originalJsonCall = response.json;
+    response.json = async () => {
+      try {
+        const data = await originalJsonCall.call(response);
+        return data;
+      } catch (error) {
+        console.error("JSON parsing error:", error);
+        throw error;
+      }
+    };
+
     return response;
   } catch (error) {
     console.error("Fetch error:", error);
