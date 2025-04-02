@@ -16,7 +16,7 @@
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
 const safeFetch = async (
-  params: Parameters<typeof fetch>
+  ...params: Parameters<typeof fetch>
 ): Promise<ReturnType<typeof fetch>> => {
   const [url, options] = params;
 
