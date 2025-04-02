@@ -13,6 +13,9 @@
     },
     "android": {
       "package": "com.erayerdin.boykotcum",
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
