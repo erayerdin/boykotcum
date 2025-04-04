@@ -38,4 +38,5 @@ yarn-error.*
 
 app-example
 **/*.aab
+**/*.apk
 .env.local
