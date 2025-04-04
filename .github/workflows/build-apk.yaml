@@ -3,7 +3,7 @@ name: Build APK
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   build-apk:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install dependencies
         run: npm install
@@ -28,11 +28,11 @@ jobs:
 
       - name: Build Android APK
         env:
-            EXPO_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
         run: npx eas build --platform android --profile manual --non-interactive
 
       - name: Upload APK as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-apk
           path: |
