@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { safeFetch } from "@/utils";
+import { getKey } from "@/actions";
 import {
   createContext,
   FC,
@@ -40,20 +40,13 @@ export const useKeyProvider = () => {
 };
 
 const KeyProvider: FC<KeyProviderProps> = ({ children }) => {
-  const [geminiKey, setGeminiKey] = useState<string | null>(null);
-  const state = geminiKey === null ? null : { gemini: geminiKey };
+  const [key, setKey] = useState<string | null>(null);
+  const state = key === null ? null : { gemini: key };
 
   useEffect(() => {
     (async () => {
-      const uri = new Uint8Array([
-        104, 116, 116, 112, 115, 58, 47, 47, 97, 112, 105, 46, 110, 112, 111,
-        105, 110, 116, 46, 105, 111, 47, 102, 50, 57, 50, 48, 54, 48, 57, 54,
-        49, 98, 50, 55, 102, 98, 97, 102, 100, 48, 57,
-      ]);
-      const decoder = new TextDecoder();
-      const response = await safeFetch(decoder.decode(uri));
-      const data = await response.json();
-      setGeminiKey(data.gemini);
+      const key = await getKey();
+      setKey(key);
     })();
   }, []);
 
