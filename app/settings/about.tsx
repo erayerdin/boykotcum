@@ -28,6 +28,10 @@ const AboutScreen = () => {
       url: "https://discord.gg/6KpMXts6eu",
     },
     {
+      title: "Instagram",
+      url: "https://www.instagram.com/boykotcum",
+    },
+    {
       title: "Github",
       url: "https://github.com/erayerdin/boykotcum",
     },
