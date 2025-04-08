@@ -2,7 +2,7 @@
   "expo": {
     "name": "Boykotçum",
     "slug": "boykotcum",
-    "version": "2.4.25.8",
+    "version": "8.4.25.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -12,6 +12,7 @@
       "supportsTablet": true
     },
     "android": {
+      "version": "8.4.25.1",
       "package": "com.erayerdin.boykotcum",
       "permissions": [
         "android.permission.INTERNET"

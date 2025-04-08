@@ -22,6 +22,25 @@ import React from "react";
 import { Pressable, Text, View } from "react-native";
 
 const AboutScreen = () => {
+  const links = [
+    {
+      title: "Discord",
+      url: "https://discord.gg/6KpMXts6eu",
+    },
+    {
+      title: "Instagram",
+      url: "https://www.instagram.com/boykotcum",
+    },
+    {
+      title: "Github",
+      url: "https://github.com/erayerdin/boykotcum",
+    },
+    {
+      title: "GNU Genel Kamu Lisansı",
+      url: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
+    },
+  ];
+
   return (
     <View className="flex-1 p-4 items-center">
       <View className="mb-4 items-center">
@@ -30,30 +49,15 @@ const AboutScreen = () => {
         <Text className="italic">"Ne almayacağını sen düşünme."</Text>
       </View>
       <SeparatedList>
-        <Pressable
-          className="items-center"
-          onPress={() => Linking.openURL("https://discord.gg/6KpMXts6eu")}
-        >
-          <Text>Discord</Text>
-        </Pressable>
-        <Pressable
-          className="items-center"
-          onPress={() =>
-            Linking.openURL("https://github.com/erayerdin/boykotcum")
-          }
-        >
-          <Text>Github</Text>
-        </Pressable>
-        <Pressable
-          className="items-center"
-          onPress={() =>
-            Linking.openURL(
-              "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
-            )
-          }
-        >
-          <Text>GNU Genel Kamu Lisansı v2.0</Text>
-        </Pressable>
+        {links.map((link) => (
+          <Pressable
+            key={link.title}
+            className="items-center"
+            onPress={() => Linking.openURL(link.url)}
+          >
+            <Text>{link.title}</Text>
+          </Pressable>
+        ))}
       </SeparatedList>
     </View>
   );
