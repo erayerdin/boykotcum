@@ -15,7 +15,7 @@ Uygulama şu an kapalı deneme sürecindedir. Google Play'in uygulamayı değerl
 - Uygulama Gemini kullanmaktadır. Uygulamanın yapay zeka maliyetlerini karşılayabilecek bir bütçeye ihtiyacımız bulunmaktadır.
 - Uygulamanın daha nasıl geliştirilebileceğiyle ilgili fikirleri olan know-how'ı olan yazılımcılara ihtiyacımız gerekmektedir. (Ne tür teknolojiler kullandığımız zaten repodan anlaşılabilir.)
 
-Ve daha burada saymadığımız pek çok yardıma ihtiyacımız olabilir. İletişim sağlamak için [Discord sunucumuz](https://discord.gg/zfWvgBVy)a katılabilirsiniz.
+Ve daha burada saymadığımız pek çok yardıma ihtiyacımız olabilir. İletişim sağlamak için [Discord sunucumuz](https://discord.gg/6KpMXts6eu)a katılabilirsiniz.
 
 ## Lisans
 
