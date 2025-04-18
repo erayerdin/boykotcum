@@ -30,7 +30,15 @@ export default tseslint.config(
         "warn",
         { allowConstantExport: true },
       ],
-      "react/boolean-prop-naming": "warn",
+      ...react.configs.recommended.rules,
+      "react/react-in-jsx-scope": "off",
+      "react/function-component-definition": [
+        "error",
+        {
+          namedComponents: "arrow-function",
+          unnamedComponents: "arrow-function",
+        },
+      ],
     },
   }
 );
