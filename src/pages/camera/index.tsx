@@ -15,17 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
-
-const HomePage = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate("/camera");
-  }, [navigate]);
-
-  return <></>;
+const CameraPage = () => {
+  return <div>CameraPage</div>;
 };
 
-export default HomePage;
+export default CameraPage;
