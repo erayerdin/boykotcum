@@ -15,8 +15,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import Webcam from "react-webcam";
+
 const CameraPage = () => {
-  return <div>CameraPage</div>;
+  return (
+    <div className="flex justify-center items-center h-screen bg-black">
+      <Webcam />
+    </div>
+  );
 };
 
 export default CameraPage;
