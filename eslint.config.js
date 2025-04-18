@@ -26,6 +26,11 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      "no-restricted-syntax": [
+        "error",
+        "FunctionExpression",
+        "FunctionDeclaration",
+      ],
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
