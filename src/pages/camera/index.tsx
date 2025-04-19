@@ -16,11 +16,19 @@
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
 import Webcam from "react-webcam";
+import CameraButton from "./components/CameraButton";
 
 const CameraPage = () => {
   return (
-    <div className="flex justify-center items-center h-screen bg-black">
+    <div className="flex justify-center items-center h-screen max-h-screen overflow-hidden bg-black">
       <Webcam />
+      <div className="absolute bottom-16 left-1/2">
+        <CameraButton
+          onClick={() => {
+            throw new Error("Not implemented");
+          }}
+        />
+      </div>
     </div>
   );
 };
