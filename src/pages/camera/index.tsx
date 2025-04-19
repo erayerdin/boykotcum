@@ -17,6 +17,7 @@
 
 import { useIDB } from "@/providers";
 import { useRef } from "react";
+import { useNavigate } from "react-router";
 import Webcam from "react-webcam";
 import cacheImage from "./actions/cacheImage";
 import CameraButton from "./components/CameraButton";
@@ -25,6 +26,7 @@ const CameraPage = () => {
   console.log("CameraPage rendered");
   const idb = useIDB();
   const webcamRef = useRef<Webcam>(null);
+  const navigate = useNavigate();
 
   const capture = async () => {
     const { current: webcam } = webcamRef;
@@ -38,6 +40,7 @@ const CameraPage = () => {
     }
 
     await cacheImage(idb, imageSrc);
+    navigate("/photo");
   };
 
   return (
