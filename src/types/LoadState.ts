@@ -25,7 +25,7 @@ export type LoadedState<T> = {
 };
 
 export type ErrorState<E> = {
-  loading: false;
+  loading: null;
   message: string;
   error: E;
 };
