@@ -23,6 +23,31 @@ test("has capture button", async ({ page }) => {
 });
 
 test("caches image", async ({ page }) => {
+  // setup
+  // get previous image value
+  await page.goto("/");
+  const previousImageValue: string | null = await page.evaluate(async () => {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open("boykotcum");
+      request.onsuccess = (event) => {
+        const db = (event.target as IDBOpenDBRequest).result;
+        const transaction = db.transaction("cache", "readonly");
+        const store = transaction.objectStore("cache");
+        const getRequest = store.get("image"); // Assuming 'image' is the key
+        getRequest.onsuccess = () => {
+          resolve(getRequest.result);
+        };
+        getRequest.onerror = () => {
+          reject(getRequest.error);
+        };
+      };
+      request.onerror = (event) => {
+        reject((event.target as IDBOpenDBRequest).error);
+      };
+    });
+  });
+
+  // test
   await page.goto("/camera");
   await page.getByRole("button").locator("div").nth(2).click();
 
@@ -53,29 +78,25 @@ test("caches image", async ({ page }) => {
   expect(imageValue).not.toBeNull();
 
   // cleanup
-  await page.evaluate(async () => {
+  // reset to previous image value
+  await page.evaluate(async (imageValue) => {
     return new Promise<void>((resolve, reject) => {
       const request = indexedDB.open("boykotcum");
-
       request.onsuccess = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
         const transaction = db.transaction("cache", "readwrite");
         const store = transaction.objectStore("cache");
-        const clearRequest = store.clear(); // Clears the entire table
-
-        clearRequest.onsuccess = () => {
-          console.log('Successfully cleared the "cache" table');
+        const putRequest = store.put(imageValue, "image");
+        putRequest.onsuccess = () => {
           resolve();
         };
-
-        clearRequest.onerror = () => {
-          reject(clearRequest.error);
+        putRequest.onerror = () => {
+          reject(putRequest.error);
         };
       };
-
       request.onerror = (event) => {
         reject((event.target as IDBOpenDBRequest).error);
       };
     });
-  });
+  }, previousImageValue);
 });
