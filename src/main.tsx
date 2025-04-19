@@ -4,14 +4,17 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import "./index.css";
 import CameraPage from "./pages/camera/index.tsx";
 import HomePage from "./pages/home/index.tsx";
+import GlobalProviders from "./providers/index.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/camera" element={<CameraPage />} />
-      </Routes>
-    </BrowserRouter>
+    <GlobalProviders>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/camera" element={<CameraPage />} />
+        </Routes>
+      </BrowserRouter>
+    </GlobalProviders>
   </StrictMode>
 );
