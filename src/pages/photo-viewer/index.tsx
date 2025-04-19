@@ -15,8 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import usePhoto from "./hooks/usePhoto";
+
 const PhotoViewerPage = () => {
-  return <div>PhotoViewerPage</div>;
+  const photo = usePhoto();
+
+  // TODO to be implemented
+  return (
+    <div className="bg-black w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
+      {photo ? (
+        <img src={photo} alt="photo" className="w-full h-full object-contain" />
+      ) : (
+        <div className="text-white text-sm">Fotoğraf çekmediniz.</div>
+      )}
+    </div>
+  );
 };
 
 export default PhotoViewerPage;
