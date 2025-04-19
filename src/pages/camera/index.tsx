@@ -15,22 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { useIDB } from "@/providers";
 import { useRef } from "react";
 import Webcam from "react-webcam";
+import cacheImage from "./actions/cacheImage";
 import CameraButton from "./components/CameraButton";
 
 const CameraPage = () => {
   console.log("CameraPage rendered");
+  const idb = useIDB();
   const webcamRef = useRef<Webcam>(null);
 
-  const capture = () => {
+  const capture = async () => {
     const { current: webcam } = webcamRef;
     if (webcam === null) {
       throw new Error("Webcam ref is not set");
     }
 
     const imageSrc = webcam.getScreenshot();
-    console.log(imageSrc); // TODO to be implemented
+    if (imageSrc === null) {
+      throw new Error("Failed to capture image");
+    }
+
+    await cacheImage(idb, imageSrc);
   };
 
   return (
