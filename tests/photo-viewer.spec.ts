@@ -70,3 +70,9 @@ test("has photo", async ({ page }) => {
     });
   });
 });
+
+test("has no photo", async ({ page }) => {
+  await page.goto("/photo");
+  await expect(page.locator("img")).not.toBeVisible();
+  await expect(page.locator("text=Fotoğraf çekmediniz.")).toBeVisible();
+});
