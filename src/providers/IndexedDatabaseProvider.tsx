@@ -19,8 +19,8 @@ import { ChildrenProps, LoadState } from "@/types";
 import { IDBPDatabase, openDB } from "idb";
 import { createContext, FC, useContext, useEffect, useState } from "react";
 
-const DB_NAME: string = "boykotcum";
-const DB_VERSION: number = 1;
+export const IDB_NAME: string = "boykotcum";
+const IDB_VERSION: number = 1;
 
 type IndexedDatabaseContextState = LoadState<IDBPDatabase, unknown>;
 
@@ -50,7 +50,7 @@ const IndexedDatabaseProvider: FC<ChildrenProps> = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
-        const db = await openDB(DB_NAME, DB_VERSION, {
+        const db = await openDB(IDB_NAME, IDB_VERSION, {
           upgrade: (db) => {
             db.createObjectStore("cache");
           },

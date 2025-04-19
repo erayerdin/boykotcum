@@ -17,7 +17,10 @@
 
 import { ChildrenProps } from "@/types";
 import { FC } from "react";
-import IndexedDatabaseProvider, { useIDB } from "./IndexedDatabaseProvider";
+import IndexedDatabaseProvider, {
+  IDB_NAME,
+  useIDB,
+} from "./IndexedDatabaseProvider";
 import InitializerProvider from "./InitializerProvider";
 
 const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
@@ -28,5 +31,5 @@ const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
   );
 };
 
-export { useIDB };
+export { IDB_NAME, useIDB };
 export default GlobalProviders;
