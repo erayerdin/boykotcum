@@ -15,19 +15,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { useRef } from "react";
 import Webcam from "react-webcam";
 import CameraButton from "./components/CameraButton";
 
 const CameraPage = () => {
+  console.log("CameraPage rendered");
+  const webcamRef = useRef<Webcam>(null);
+
+  const capture = () => {
+    const { current: webcam } = webcamRef;
+    if (webcam === null) {
+      throw new Error("Webcam ref is not set");
+    }
+
+    const imageSrc = webcam.getScreenshot();
+    console.log(imageSrc); // TODO to be implemented
+  };
+
   return (
     <div className="flex justify-center items-center h-screen max-h-screen overflow-hidden bg-black">
-      <Webcam />
+      <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
       <div className="absolute bottom-16 left-1/2">
-        <CameraButton
-          onClick={() => {
-            throw new Error("Not implemented");
-          }}
-        />
+        <CameraButton onClick={capture} />
       </div>
     </div>
   );
