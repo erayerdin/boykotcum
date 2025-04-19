@@ -22,14 +22,17 @@ import IndexedDatabaseProvider, {
   useIDB,
 } from "./IndexedDatabaseProvider";
 import InitializerProvider from "./InitializerProvider";
+import KeyProvider, { useKey } from "./KeyProvider";
 
 const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
   return (
     <IndexedDatabaseProvider>
-      <InitializerProvider>{children}</InitializerProvider>
+      <KeyProvider>
+        <InitializerProvider>{children}</InitializerProvider>
+      </KeyProvider>
     </IndexedDatabaseProvider>
   );
 };
 
-export { IDB_NAME, useIDB };
+export { IDB_NAME, useIDB, useKey };
 export default GlobalProviders;

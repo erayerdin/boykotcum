@@ -19,10 +19,13 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { ChildrenProps } from "@/types";
 import { FC, useContext } from "react";
 import { IndexedDatabaseContext } from "./IndexedDatabaseProvider";
+import { KeyContext } from "./KeyProvider";
 
 const InitializerProvider: FC<ChildrenProps> = ({ children }) => {
   const idbState = useContext(IndexedDatabaseContext);
-  const states = [idbState];
+  const keyState = useContext(KeyContext);
+
+  const states = [idbState, keyState];
   const isLoaded = states.every((state) => state.loading === false);
 
   return isLoaded ? (
