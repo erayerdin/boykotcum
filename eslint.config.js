@@ -44,6 +44,7 @@ export default tseslint.config(
           unnamedComponents: "arrow-function",
         },
       ],
+      "react/button-has-type": "error",
     },
   }
 );
