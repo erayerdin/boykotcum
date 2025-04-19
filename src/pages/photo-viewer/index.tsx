@@ -15,16 +15,38 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import usePhoto from "./hooks/usePhoto";
 
 const PhotoViewerPage = () => {
   const photo = usePhoto();
 
-  // TODO to be implemented
   return (
     <div className="bg-black w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
       {photo ? (
-        <img src={photo} alt="photo" className="w-full h-full object-contain" />
+        <>
+          <img
+            src={photo}
+            alt="photo"
+            className="w-full h-full object-contain"
+          />
+          <Sheet defaultOpen>
+            <SheetContent side="bottom">
+              <SheetHeader>
+                <SheetTitle>Boykotlu Ürünler</SheetTitle>
+                <div className="flex justify-center">
+                  <LoadingSpinner size={32} />
+                </div>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+        </>
       ) : (
         <div className="text-white text-sm">Fotoğraf çekmediniz.</div>
       )}

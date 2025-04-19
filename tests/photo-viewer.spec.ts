@@ -18,12 +18,9 @@
 import { expect, test } from "@playwright/test";
 import { readFile } from "fs/promises";
 
-test("has photo", async ({ page }) => {
-  // setup
+const setup = async (page) => {
   await page.goto("/");
-  // read testimg.datauri
   const datauri = await readFile("tests/testimg.datauri", "utf-8");
-  // save indexeddb boykotcum/cache/image
   await page.evaluate(async (datauri) => {
     return new Promise<void>((resolve, reject) => {
       const request = indexedDB.open("boykotcum");
@@ -40,15 +37,13 @@ test("has photo", async ({ page }) => {
         };
       };
       request.onerror = (event) => {
-        reject((event.target as IDBOpenDBRequest).error);
+        reject(event);
       };
     });
   }, datauri);
+};
 
-  await page.goto("/photo");
-  await expect(page.locator("img")).toBeVisible();
-
-  // teardown
+const teardown = async (page) => {
   await page.evaluate(async () => {
     return new Promise<void>((resolve, reject) => {
       const request = indexedDB.open("boykotcum");
@@ -65,14 +60,34 @@ test("has photo", async ({ page }) => {
         };
       };
       request.onerror = (event) => {
-        reject((event.target as IDBOpenDBRequest).error);
+        reject(event);
       };
     });
   });
+};
+
+test("has photo", async ({ page }) => {
+  await setup(page);
+  await page.goto("/photo");
+  await expect(page.locator("img")).toBeVisible();
+  await teardown(page);
 });
 
 test("has no photo", async ({ page }) => {
   await page.goto("/photo");
   await expect(page.locator("img")).not.toBeVisible();
   await expect(page.locator("text=Fotoğraf çekmediniz.")).toBeVisible();
+});
+
+test("has loading spinner", async ({ page }) => {
+  await setup(page);
+  await page.goto("/photo");
+  await expect(
+    page
+      .locator("div")
+      .filter({ hasText: /^Boykotlu Ürünler$/ })
+      .locator("div")
+      .locator("svg")
+  ).toBeVisible();
+  await teardown(page);
 });
