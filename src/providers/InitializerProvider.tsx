@@ -15,18 +15,23 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { ChildrenProps } from "@/types";
-import { FC } from "react";
-import IndexedDatabaseProvider, { useIDB } from "./IndexedDatabaseProvider";
-import InitializerProvider from "./InitializerProvider";
+import { FC, useContext } from "react";
+import { IndexedDatabaseContext } from "./IndexedDatabaseProvider";
 
-const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
-  return (
-    <IndexedDatabaseProvider>
-      <InitializerProvider>{children}</InitializerProvider>
-    </IndexedDatabaseProvider>
+const InitializerProvider: FC<ChildrenProps> = ({ children }) => {
+  const idbState = useContext(IndexedDatabaseContext);
+  const states = [idbState];
+  const isLoaded = states.every((state) => state.loading === false);
+
+  return isLoaded ? (
+    <>{children}</>
+  ) : (
+    <div className="flex h-screen w-screen items-center justify-center bg-black">
+      <LoadingSpinner size={64} color="white" />
+    </div>
   );
 };
 
-export { useIDB };
-export default GlobalProviders;
+export default InitializerProvider;

@@ -24,9 +24,10 @@ const DB_VERSION: number = 1;
 
 type IndexedDatabaseContextState = LoadState<IDBPDatabase, unknown>;
 
-const IndexedDatabaseContext = createContext<IndexedDatabaseContextState>({
-  loading: true,
-});
+export const IndexedDatabaseContext =
+  createContext<IndexedDatabaseContextState>({
+    loading: true,
+  });
 
 export const useIDB = (): IDBPDatabase => {
   const state = useContext(IndexedDatabaseContext);
