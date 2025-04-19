@@ -15,19 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { ReactNode } from "react";
-import LoadState, { ErrorState, LoadedState, LoadingState } from "./LoadState";
-import Product from "./Product";
-
-type ChildrenProps = {
-  children: ReactNode;
+type Product = {
+  name: string;
+  description: string;
 };
 
-export {
-  type ChildrenProps,
-  type ErrorState,
-  type LoadedState,
-  type LoadingState,
-  type LoadState,
-  type Product,
-};
+export default Product;
