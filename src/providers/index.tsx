@@ -23,12 +23,15 @@ import IndexedDatabaseProvider, {
 } from "./IndexedDatabaseProvider";
 import InitializerProvider from "./InitializerProvider";
 import KeyProvider, { useKey } from "./KeyProvider";
+import ProductsProvider from "./ProductsProvider";
 
 const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
   return (
     <IndexedDatabaseProvider>
       <KeyProvider>
-        <InitializerProvider>{children}</InitializerProvider>
+        <ProductsProvider>
+          <InitializerProvider>{children}</InitializerProvider>
+        </ProductsProvider>
       </KeyProvider>
     </IndexedDatabaseProvider>
   );

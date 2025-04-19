@@ -20,12 +20,14 @@ import { ChildrenProps } from "@/types";
 import { FC, useContext } from "react";
 import { IndexedDatabaseContext } from "./IndexedDatabaseProvider";
 import { KeyContext } from "./KeyProvider";
+import { ProductsContext } from "./ProductsProvider";
 
 const InitializerProvider: FC<ChildrenProps> = ({ children }) => {
   const idbState = useContext(IndexedDatabaseContext);
   const keyState = useContext(KeyContext);
+  const productsState = useContext(ProductsContext);
 
-  const states = [idbState, keyState];
+  const states = [idbState, keyState, productsState];
   const isLoaded = states.every((state) => state.loading === false);
 
   return isLoaded ? (
