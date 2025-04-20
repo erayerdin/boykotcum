@@ -22,17 +22,27 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import usePhoto from "./hooks/usePhoto";
+import useAsyncAction from "@/hooks/useAsyncAction";
+import { useGenAI, useIDB } from "@/providers";
+import { useProducts } from "@/providers/ProductsProvider";
+import usePhotoStore from "./store";
 
 const PhotoViewerPage = () => {
-  const photo = usePhoto();
+  const idb = useIDB();
+  const ai = useGenAI();
+  const predefinedProducts = useProducts();
+  const { getPhoto } = usePhotoStore({ idb, ai, predefinedProducts })();
+  const photo = useAsyncAction({
+    action: getPhoto,
+    message: "Fotoğraf yüklenemedi.",
+  });
 
   return (
     <div className="bg-black w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
-      {photo ? (
+      {photo.loading === false && photo.obj !== undefined ? (
         <>
           <img
-            src={photo}
+            src={photo.obj}
             alt="photo"
             className="w-full h-full object-contain"
           />
