@@ -31,9 +31,9 @@ const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
     <IndexedDatabaseProvider>
       <KeyProvider>
         <ProductsProvider>
-          <GenAIProvider>
-            <InitializerProvider>{children}</InitializerProvider>
-          </GenAIProvider>
+          <InitializerProvider>
+            <GenAIProvider>{children}</GenAIProvider>
+          </InitializerProvider>
         </ProductsProvider>
       </KeyProvider>
     </IndexedDatabaseProvider>

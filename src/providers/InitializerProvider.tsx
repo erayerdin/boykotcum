@@ -18,7 +18,6 @@
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { ChildrenProps } from "@/types";
 import { FC, useContext } from "react";
-import { GenAIContext } from "./GenAIProvider";
 import { IndexedDatabaseContext } from "./IndexedDatabaseProvider";
 import { KeyContext } from "./KeyProvider";
 import { ProductsContext } from "./ProductsProvider";
@@ -27,9 +26,8 @@ const InitializerProvider: FC<ChildrenProps> = ({ children }) => {
   const idbState = useContext(IndexedDatabaseContext);
   const keyState = useContext(KeyContext);
   const productsState = useContext(ProductsContext);
-  const genAIState = useContext(GenAIContext);
 
-  const states = [idbState, keyState, productsState, genAIState];
+  const states = [idbState, keyState, productsState];
   const isLoaded = states.every((state) => state.loading === false);
 
   return isLoaded ? (
