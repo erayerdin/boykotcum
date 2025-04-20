@@ -22,13 +22,13 @@ import { create, StoreApi, UseBoundStore } from "zustand";
 import detectProducts from "./actions/detectProducts";
 import getPhoto from "./actions/getPhoto";
 
-type ProductsStoreCreatorParams = {
+type PhotoStoreCreatorParams = {
   ai: GoogleGenAI;
   idb: IDBPDatabase;
   predefinedProducts: Product[];
 };
 
-type ProductsState = {
+type PhotoState = {
   isLoading: boolean;
   products: Product[];
   // getters //
@@ -37,16 +37,16 @@ type ProductsState = {
   detect: () => Promise<void>;
 };
 
-let store: UseBoundStore<StoreApi<ProductsState>> | null = null;
+let store: UseBoundStore<StoreApi<PhotoState>> | null = null;
 
-const useProductsStore = ({
+const usePhotoStore = ({
   ai,
   idb,
   predefinedProducts,
-}: ProductsStoreCreatorParams) => {
+}: PhotoStoreCreatorParams) => {
   if (store !== null) return store;
 
-  store = create<ProductsState>((set, get) => ({
+  store = create<PhotoState>((set, get) => ({
     isLoading: false,
     products: predefinedProducts,
     // getters //
@@ -73,5 +73,5 @@ const useProductsStore = ({
   return store;
 };
 
-export type ProductsStore = typeof store;
-export default useProductsStore;
+export type PhotoStore = typeof store;
+export default usePhotoStore;
