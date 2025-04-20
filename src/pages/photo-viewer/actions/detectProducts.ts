@@ -35,6 +35,18 @@ const detectProducts = async ({
   products,
   uri,
 }: ListProductsParams): Promise<Product[]> => {
+  if (import.meta.env.MODE === "e2e")
+    return [
+      {
+        name: "Ülker",
+        description: "",
+      },
+      {
+        name: "Superfresh",
+        description: "",
+      },
+    ];
+
   const prompt = productDetectionPrompt({ products });
   const response = await ai.models.generateContent({
     model: "gemini-2.0-flash-001",
