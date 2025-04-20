@@ -32,7 +32,7 @@ type PhotoState = {
   isLoading: boolean;
   products: Product[];
   // getters //
-  photo: () => Promise<string | null>;
+  getPhoto: () => Promise<string | undefined>;
   // methods //
   detect: () => Promise<void>;
 };
@@ -50,11 +50,11 @@ const usePhotoStore = ({
     isLoading: false,
     products: predefinedProducts,
     // getters //
-    photo: () => getPhoto(idb),
+    getPhoto: () => getPhoto(idb),
     // methods //
     detect: async () => {
-      const uri = await get().photo();
-      if (uri === null) {
+      const uri = await get().getPhoto();
+      if (uri === undefined) {
         const error = new Error("Photo not found.");
         console.error(error);
         throw error;

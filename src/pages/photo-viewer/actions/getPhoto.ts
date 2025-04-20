@@ -17,7 +17,7 @@
 
 import { IDBPDatabase } from "idb";
 
-const getPhoto = async (db: IDBPDatabase): Promise<string | null> => {
+const getPhoto = async (db: IDBPDatabase): Promise<string | undefined> => {
   const photo = await db.get("cache", "image");
   return photo;
 };
