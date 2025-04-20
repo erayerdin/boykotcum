@@ -78,7 +78,7 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
   webServer: {
-    command: "npm run dev -- --port 1994",
+    command: "npm run dev -- --port 1994 --mode e2e",
     url: "http://localhost:1994",
     reuseExistingServer: !process.env.CI,
   },
