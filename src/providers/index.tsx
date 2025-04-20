@@ -16,7 +16,8 @@
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
 import { ChildrenProps } from "@/types";
-import { FC } from "react";
+import disableDevtools from "disable-devtool";
+import { FC, useEffect } from "react";
 import GenAIProvider, { useGenAI } from "./GenAIProvider";
 import IndexedDatabaseProvider, {
   IDB_NAME,
@@ -27,6 +28,12 @@ import KeyProvider, { useKey } from "./KeyProvider";
 import ProductsProvider from "./ProductsProvider";
 
 const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
+  useEffect(() => {
+    if (import.meta.env.PROD) {
+      disableDevtools();
+    }
+  }, []);
+
   return (
     <IndexedDatabaseProvider>
       <KeyProvider>
