@@ -37,9 +37,11 @@ const PhotoViewerPage = () => {
     message: "Fotoğraf yüklenemedi.",
   });
 
+  const photoExists = photo.loading === false && photo.obj !== undefined;
+
   return (
     <div className="bg-black w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
-      {photo.loading === false && photo.obj !== undefined ? (
+      {photoExists ? (
         <>
           <img
             src={photo.obj}
