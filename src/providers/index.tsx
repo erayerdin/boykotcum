@@ -17,6 +17,7 @@
 
 import { ChildrenProps } from "@/types";
 import { FC } from "react";
+import GenAIProvider, { useGenAI } from "./GenAIProvider";
 import IndexedDatabaseProvider, {
   IDB_NAME,
   useIDB,
@@ -30,12 +31,14 @@ const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
     <IndexedDatabaseProvider>
       <KeyProvider>
         <ProductsProvider>
-          <InitializerProvider>{children}</InitializerProvider>
+          <GenAIProvider>
+            <InitializerProvider>{children}</InitializerProvider>
+          </GenAIProvider>
         </ProductsProvider>
       </KeyProvider>
     </IndexedDatabaseProvider>
   );
 };
 
-export { IDB_NAME, useIDB, useKey };
+export { IDB_NAME, useGenAI, useIDB, useKey };
 export default GlobalProviders;
