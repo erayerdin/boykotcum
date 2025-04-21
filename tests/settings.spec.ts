@@ -15,32 +15,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
-import { FC } from "react";
+import { expect, test } from "@playwright/test";
 
-type MaterialMenuItemProps = {
-  name?: string;
-  label: string;
-  description?: string;
-  onClick?: () => void;
-};
+test("has update list button", async ({ page }) => {
+  await page.goto("/settings");
+  await expect(page.locator("button[name='update-blacklist']")).toBeVisible();
+});
 
-const MaterialMenuItem: FC<MaterialMenuItemProps> = ({
-  name,
-  label,
-  description,
-  onClick,
-}) => {
-  return (
-    <button
-      name={name}
-      type="button"
-      className="flex flex-col p-4 w-full"
-      onClick={onClick}
-    >
-      <div className="flex flex-row text-lg font-bold">{label}</div>
-      {description && <div className="flex flex-row">{description}</div>}
-    </button>
-  );
-};
-
-export default MaterialMenuItem;
+test("has about button", async ({ page }) => {
+  await page.goto("/settings");
+  await expect(page.locator("button[name='about']")).toBeVisible();
+});

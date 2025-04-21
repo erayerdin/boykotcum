@@ -15,8 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import MaterialMenu, { MaterialMenuItem } from "@/components/material-menu";
+
 const SettingsPage = () => {
-  return <div>SettingsPage</div>;
+  return (
+    <div className="flex flex-col">
+      <MaterialMenu>
+        <MaterialMenuItem
+          name="update-blacklist"
+          label="Boykot Listesini Güncelle"
+          description="24 saatte otomatik olarak güncellenen boykot listesini şimdi güncelle."
+        />
+        <MaterialMenuItem name="about" label="Hakkında" />
+      </MaterialMenu>
+    </div>
+  );
 };
 
 export default SettingsPage;
