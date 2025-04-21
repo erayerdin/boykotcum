@@ -63,8 +63,10 @@ const PhotoViewerPage = () => {
                 <SheetTitle>Boykotlu Ürünler</SheetTitle>
               </SheetHeader>
               <div
-                className={`flex flex-col p-2 ${
-                  isLoading ? "overflow-y-auto" : "overflow-y-scroll"
+                className={`flex flex-col p-4 ${
+                  isLoading || products.length === 0
+                    ? "overflow-y-hidden"
+                    : "overflow-y-auto"
                 }`}
               >
                 {isLoading ? (
@@ -72,7 +74,7 @@ const PhotoViewerPage = () => {
                     <LoadingSpinner size={32} />
                   </div>
                 ) : products.length === 0 ? (
-                  <div className="text-white text-sm">
+                  <div className="text-black text-center text-sm">
                     Boykotlu ürün bulunamadı.
                   </div>
                 ) : (
@@ -80,7 +82,7 @@ const PhotoViewerPage = () => {
                     {products.map((product) => (
                       <div
                         key={product.name}
-                        className="bg-gray-400 text-black text-sm"
+                        className="bg-gray-200 text-zinc-800 text-sm p-2 rounded-md"
                       >
                         {product.name}
                       </div>
