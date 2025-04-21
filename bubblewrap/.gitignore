@@ -1,1 +1,5 @@
 manifest-checksum.txt
+**/*.aab
+**/*.apk*
+.gradle
+app/build
