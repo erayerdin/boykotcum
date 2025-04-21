@@ -118,3 +118,146 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+
+    /* Disable text selection for interactive elements */
+    -webkit-user-select: none;
+    user-select: none;
+
+    /* Improve tap responsiveness on mobile */
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+  }
+
+  /* Allow text selection only in content areas */
+  [contenteditable],
+  input,
+  textarea,
+  pre,
+  code {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+
+    /* Native-like scrolling */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+
+    /* Prevent text size adjustment on orientation change */
+    text-size-adjust: 100%;
+
+    /* Font smoothing */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Native-like buttons and interactive elements */
+  button,
+  [role="button"],
+  a {
+    @apply cursor-pointer active:opacity-80 transition-opacity;
+
+    /* Disable default button styling */
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+  }
+
+  /* Native-like inputs */
+  input,
+  textarea,
+  select {
+    @apply bg-transparent;
+    -webkit-appearance: none;
+    appearance: none;
+
+    /* Remove iOS input shadows */
+    box-shadow: none;
+  }
+
+  /* Remove default focus rings and replace with your theme */
+  *:focus {
+    outline: none;
+  }
+
+  /* Native-like scrollbars */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  /* Prevent long presses from showing native menus */
+  a,
+  img,
+  button {
+    -webkit-touch-callout: none;
+  }
+
+  /* Native-like transitions */
+  :is(a, button, input, textarea, select) {
+    transition: color 0.15s ease, background-color 0.15s ease,
+      border-color 0.15s ease, opacity 0.15s ease;
+  }
+
+  /* Disable pull-to-refresh (but allow overscroll) */
+  @supports (overscroll-behavior-y: contain) {
+    body {
+      overscroll-behavior-y: contain;
+    }
+  }
+
+  /* iOS form styling fixes */
+  input[type="search"] {
+    -webkit-appearance: textfield;
+  }
+
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  /* Remove autofill background color */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--foreground) !important;
+  }
+}
+
+/* Additional utility classes for native-like behaviors */
+@layer utilities {
+  .native-scroll {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .tap-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .momentum-scrolling {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
