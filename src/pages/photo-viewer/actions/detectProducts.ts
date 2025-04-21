@@ -18,7 +18,7 @@
 import productDetectionPrompt from "@/prompts/productDetectionPrompt";
 import { Product } from "@/types";
 import {
-  createPartFromUri,
+  createPartFromBase64,
   createUserContent,
   GoogleGenAI,
   Type,
@@ -50,7 +50,13 @@ const detectProducts = async ({
   const prompt = productDetectionPrompt({ products });
   const response = await ai.models.generateContent({
     model: "gemini-2.0-flash-001",
-    contents: createUserContent([createPartFromUri(uri, "image/jpeg"), prompt]),
+    contents: createUserContent([
+      createPartFromBase64(
+        uri.replace("data:image/jpeg;base64,", ""),
+        "image/jpeg"
+      ),
+      prompt,
+    ]),
     config: {
       responseMimeType: "application/json",
       responseSchema: {
