@@ -15,8 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
+
 const AboutPage = () => {
-  return <div>AboutPage</div>;
+  // navigate back
+  const navigate = useNavigate();
+
+  return (
+    <div className="flex flex-col justify-between h-screen max-h-screen p-2">
+      <div className="grow overflow-y-auto">Content</div>
+      <Button type="button" onClick={() => navigate(-1)}>
+        Geri Dön
+      </Button>
+    </div>
+  );
 };
 
 export default AboutPage;
