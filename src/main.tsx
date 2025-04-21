@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./index.css";
+import MaterialLayout from "./layouts/material/index.tsx";
 import CameraPage from "./pages/camera/index.tsx";
 import HomePage from "./pages/home/index.tsx";
 import PhotoViewerPage from "./pages/photo-viewer/index.tsx";
@@ -15,7 +16,9 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/camera" element={<CameraPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
+          <Route element={<MaterialLayout />}>
+            <Route path="/settings" element={<SettingsPage />} />
+          </Route>
           <Route path="/photo" element={<PhotoViewerPage />} />
         </Routes>
       </BrowserRouter>
