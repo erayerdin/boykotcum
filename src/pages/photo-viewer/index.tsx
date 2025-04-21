@@ -31,7 +31,11 @@ const PhotoViewerPage = () => {
   const idb = useIDB();
   const ai = useGenAI();
   const predefinedProducts = useProducts();
-  const { getPhoto } = usePhotoStore({ idb, ai, predefinedProducts })();
+  const { getPhoto, isLoading, products } = usePhotoStore({
+    idb,
+    ai,
+    predefinedProducts,
+  })();
   const photo = useAsyncAction({
     action: getPhoto,
     message: "Fotoğraf yüklenemedi.",
@@ -49,13 +53,36 @@ const PhotoViewerPage = () => {
             className="w-full h-full object-contain"
           />
           <Sheet defaultOpen>
-            <SheetContent side="bottom">
+            <SheetContent side="bottom" className="max-h-1/2">
               <SheetHeader>
                 <SheetTitle>Boykotlu Ürünler</SheetTitle>
-                <div className="flex justify-center">
-                  <LoadingSpinner size={32} />
-                </div>
               </SheetHeader>
+              <div
+                className={`flex flex-col p-2 ${
+                  isLoading ? "overflow-y-auto" : "overflow-y-scroll"
+                }`}
+              >
+                {isLoading ? (
+                  <div className="flex justify-center">
+                    <LoadingSpinner size={32} />
+                  </div>
+                ) : products.length === 0 ? (
+                  <div className="text-white text-sm">
+                    Boykotlu ürün bulunamadı.
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-2">
+                    {products.map((product) => (
+                      <div
+                        key={product.name}
+                        className="bg-gray-400 text-black text-sm"
+                      >
+                        {product.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </SheetContent>
           </Sheet>
         </>
