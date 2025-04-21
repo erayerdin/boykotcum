@@ -85,3 +85,11 @@ test("has loading spinner", async ({ page }) => {
   await expect(page.locator("svg[name='detecting']")).toBeVisible();
   await teardown(page);
 });
+
+test("detects products", async ({ page }) => {
+  await setup(page);
+  await page.goto("/photo");
+  await expect(page.getByText("Ülker")).toBeVisible();
+  await expect(page.getByText("BİM")).toBeVisible();
+  await teardown(page);
+});
