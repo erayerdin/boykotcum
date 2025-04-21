@@ -86,6 +86,12 @@ test("has loading spinner", async ({ page }) => {
   await teardown(page);
 });
 
+test("has back button", async ({ page }) => {
+  await page.goto("/photo");
+  await page.waitForSelector("text=Fotoğraf çekmediniz.");
+  expect(page.locator("button[name='back']")).toBeVisible();
+});
+
 test("detects products", async ({ page }) => {
   await setup(page);
   await page.goto("/photo");

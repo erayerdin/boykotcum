@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { Button } from "@/components/ui/button";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import {
   Sheet,
@@ -25,6 +26,7 @@ import {
 import useAsyncAction from "@/hooks/useAsyncAction";
 import { useGenAI, useIDB } from "@/providers";
 import { useProducts } from "@/providers/ProductsProvider";
+import { ArrowLeftIcon } from "lucide-react";
 import { useEffect } from "react";
 import usePhotoStore from "./store";
 
@@ -50,6 +52,14 @@ const PhotoViewerPage = () => {
 
   return (
     <div className="bg-black w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
+      <Button
+        name="back"
+        type="button"
+        variant="ghost"
+        className="absolute top-4 left-4"
+      >
+        <ArrowLeftIcon size={32} color="white" />
+      </Button>
       {photoExists ? (
         <>
           <img
