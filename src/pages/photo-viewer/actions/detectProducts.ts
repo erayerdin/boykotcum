@@ -17,6 +17,7 @@
 
 import productDetectionPrompt from "@/prompts/productDetectionPrompt";
 import { Product } from "@/types";
+import sleepAsync from "@/utils/sleepAsync";
 import {
   createPartFromBase64,
   createUserContent,
@@ -35,7 +36,8 @@ const detectProducts = async ({
   products,
   uri,
 }: ListProductsParams): Promise<Product[]> => {
-  if (import.meta.env.MODE === "e2e")
+  if (import.meta.env.MODE === "e2e") {
+    await sleepAsync(2000);
     return [
       {
         name: "Ülker",
@@ -46,6 +48,7 @@ const detectProducts = async ({
         description: "",
       },
     ];
+  }
 
   const prompt = productDetectionPrompt({ products });
   const response = await ai.models.generateContent({
