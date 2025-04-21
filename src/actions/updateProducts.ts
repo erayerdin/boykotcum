@@ -24,9 +24,14 @@ type FetchProductsParams = {
 const updateProducts = async ({
   link,
 }: FetchProductsParams): Promise<Product[]> => {
-  const id = window.crypto.subtle
-    .digest("SHA-256", new TextEncoder().encode(link))
-    .toString();
+  const idBuffer = await window.crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(link)
+  );
+  // convert id to hex string
+  const id = Array.from(new Uint8Array(idBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
   const dataKey = `data-${id}`;
   const expKey = `exp-${id}`;
 
