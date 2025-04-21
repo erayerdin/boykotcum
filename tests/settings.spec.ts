@@ -16,19 +16,48 @@
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
 import { expect, test } from "@playwright/test";
+import { createHash } from "crypto";
 
-test("has update list button", async ({ page }) => {
-  await page.goto("/settings");
-  await expect(page.locator("button[name='update-blacklist']")).toBeVisible();
-});
+test("updates black list", async ({ page, browserName }) => {
+  // TODO: Fix this test for webkit later
+  test.skip(
+    browserName === "webkit",
+    "See: https://github.com/microsoft/playwright/issues/35685"
+  );
 
-test("shows update list dialog", async ({ page }) => {
-  await page.goto("/settings");
-  await page.locator("button[name='update-blacklist']").click();
-  await expect(page.getByText("Liste güncellensin mi?")).toBeVisible();
-});
+  const url = "https://api.npoint.io/6f7f9eaf9cb9b6f421b4";
+  const urlHash = createHash("sha256").update(url).digest("hex");
+  const data = [
+    {
+      name: "Foo",
+      description: "foo",
+    },
+    {
+      name: "Bar",
+      description: "bar",
+    },
+  ];
 
-test("has about button", async ({ page }) => {
+  await page.route(url, async (route) => {
+    await route.fulfill({
+      json: data,
+      headers: {
+        ...route.request().headers(),
+        "Cache-Control": "no-cache",
+      },
+    });
+  });
+
   await page.goto("/settings");
-  await expect(page.locator("button[name='about']")).toBeVisible();
+  await page.locator("button[name='update-blacklist-item']").click();
+  await page.locator('button[name="update-blacklist"]').click();
+  await page.waitForSelector("text=Boykot listesi güncellendi.");
+
+  const localStorageData = await page.evaluate(
+    (urlHash) => localStorage.getItem(`data-${urlHash}`),
+    urlHash
+  );
+  expect(localStorageData).toEqual(JSON.stringify(data));
+
+  await page.unroute(url);
 });

@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import updateProducts from "@/actions/updateProducts";
 import MaterialMenu, { MaterialMenuItem } from "@/components/material-menu";
 import {
   AlertDialog,
@@ -26,7 +27,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { PRODUCT_LIST_URL } from "@/constants";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const SettingsPage = () => {
   const [isUpdateBlacklistDialogOpen, setUpdateBlacklistDialogOpen] =
@@ -37,7 +40,7 @@ const SettingsPage = () => {
       <div className="flex flex-col">
         <MaterialMenu>
           <MaterialMenuItem
-            name="update-blacklist"
+            name="update-blacklist-item"
             label="Boykot Listesini Güncelle"
             onClick={() => setUpdateBlacklistDialogOpen(true)}
           />
@@ -59,7 +62,20 @@ const SettingsPage = () => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>İptal</AlertDialogCancel>
-            <AlertDialogAction>Güncelle</AlertDialogAction>
+            <AlertDialogAction
+              name="update-blacklist"
+              onClick={async () => {
+                try {
+                  await updateProducts({ link: PRODUCT_LIST_URL });
+                  toast.success("Boykot listesi güncellendi.");
+                } catch (error) {
+                  toast.error("Boykot listesi güncellenemedi.");
+                  throw error;
+                }
+              }}
+            >
+              Güncelle
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
