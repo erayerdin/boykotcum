@@ -16,7 +16,7 @@ createRoot(document.getElementById("root")!).render(
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/camera" element={<CameraPage />} />
-          <Route element={<MaterialLayout />}>
+          <Route element={<MaterialLayout defaultTitle="Ayarlar" />}>
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
           <Route path="/photo" element={<PhotoViewerPage />} />

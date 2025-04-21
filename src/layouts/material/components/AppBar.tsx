@@ -15,21 +15,39 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { ArrowLeftIcon } from "lucide-react";
 import { FC } from "react";
-import { Outlet } from "react-router";
-import AppBar from "./components/AppBar";
 
-type MaterialLayoutProps = {
+const BackButton = () => {
+  const canGoBack = window.history.length > 1;
+
+  return (
+    canGoBack && (
+      <button
+        type="button"
+        onClick={() => {
+          if (canGoBack) {
+            window.history.back();
+          }
+        }}
+      >
+        <ArrowLeftIcon size={32} />
+      </button>
+    )
+  );
+};
+
+type AppBarProps = {
   defaultTitle: string;
 };
 
-const MaterialLayout: FC<MaterialLayoutProps> = ({ defaultTitle }) => {
+const AppBar: FC<AppBarProps> = ({ defaultTitle }) => {
   return (
-    <div className="flex flex-col">
-      <AppBar defaultTitle={defaultTitle} />
-      <Outlet />
+    <div className="flex shadow h-16 max-h-16 items-center px-4 gap-4">
+      <BackButton />
+      <p className="text-xl font-bold">{defaultTitle}</p>
     </div>
   );
 };
 
-export default MaterialLayout;
+export default AppBar;
