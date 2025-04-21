@@ -28,9 +28,11 @@ import { useGenAI, useIDB } from "@/providers";
 import { useProducts } from "@/providers/ProductsProvider";
 import { ArrowLeftIcon } from "lucide-react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import usePhotoStore from "./store";
 
 const PhotoViewerPage = () => {
+  const navigate = useNavigate();
   const idb = useIDB();
   const ai = useGenAI();
   const predefinedProducts = useProducts();
@@ -57,6 +59,9 @@ const PhotoViewerPage = () => {
         type="button"
         variant="ghost"
         className="absolute top-4 left-4"
+        onClick={async () => {
+          await navigate("/camera");
+        }}
       >
         <ArrowLeftIcon size={32} color="white" />
       </Button>
