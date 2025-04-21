@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 import fetchProducts from "@/actions/fetchProducts";
+import { PRODUCT_LIST_URL } from "@/constants";
 import { LoadState, Product } from "@/types";
 import { createContext, FC, useContext, useEffect, useState } from "react";
 
@@ -47,7 +48,7 @@ const ProductsProvider: FC<ProductsProviderProps> = ({ children }) => {
   useEffect(() => {
     (async () => {
       const products = await fetchProducts({
-        link: "https://api.npoint.io/6f7f9eaf9cb9b6f421b4",
+        link: PRODUCT_LIST_URL,
       });
       setState({ loading: false, obj: products });
     })();
