@@ -22,6 +22,12 @@ test("has update list button", async ({ page }) => {
   await expect(page.locator("button[name='update-blacklist']")).toBeVisible();
 });
 
+test("shows update list dialog", async ({ page }) => {
+  await page.goto("/settings");
+  await page.locator("button[name='update-blacklist']").click();
+  await expect(page.getByText("Liste güncellensin mi?")).toBeVisible();
+});
+
 test("has about button", async ({ page }) => {
   await page.goto("/settings");
   await expect(page.locator("button[name='about']")).toBeVisible();
