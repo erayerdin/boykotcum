@@ -82,12 +82,6 @@ test("has no photo", async ({ page }) => {
 test("has loading spinner", async ({ page }) => {
   await setup(page);
   await page.goto("/photo");
-  await expect(
-    page
-      .locator("div")
-      .filter({ hasText: /^Boykotlu Ürünler$/ })
-      .locator("div")
-      .locator("svg")
-  ).toBeVisible();
+  await expect(page.locator("svg[name='detecting']")).toBeVisible();
   await teardown(page);
 });

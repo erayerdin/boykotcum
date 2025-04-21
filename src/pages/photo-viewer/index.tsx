@@ -71,7 +71,7 @@ const PhotoViewerPage = () => {
               >
                 {isLoading ? (
                   <div className="flex justify-center">
-                    <LoadingSpinner size={32} />
+                    <LoadingSpinner name="detecting" size={32} />
                   </div>
                 ) : products.length === 0 ? (
                   <div className="text-black text-center text-sm">
