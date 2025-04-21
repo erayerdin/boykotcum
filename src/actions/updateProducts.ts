@@ -21,7 +21,7 @@ type FetchProductsParams = {
   link: string;
 };
 
-const fetchProducts = async ({
+const updateProducts = async ({
   link,
 }: FetchProductsParams): Promise<Product[]> => {
   const id = window.crypto.subtle
@@ -37,4 +37,4 @@ const fetchProducts = async ({
   return data;
 };
 
-export default fetchProducts;
+export default updateProducts;
