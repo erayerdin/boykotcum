@@ -37,14 +37,10 @@ const MaterialMenuItem: FC<MaterialMenuItemProps> = ({
       className="flex flex-col p-4 w-full"
       onClick={onClick}
     >
-      <div
-        className={`flex flex-row text-lg ${
-          description ? "font-bold" : "font-medium"
-        }`}
-      >
-        {label}
-      </div>
-      {description && <div className="flex flex-row">{description}</div>}
+      <div className="flex flex-row text-lg">{label}</div>
+      {description && (
+        <div className="flex flex-row text-sm text-gray-500">{description}</div>
+      )}
     </button>
   );
 };
