@@ -15,7 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { Button } from "@/components/ui/button";
 import { useIDB } from "@/providers";
+import { SettingsIcon } from "lucide-react";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
 import Webcam from "react-webcam";
@@ -45,6 +47,17 @@ const CameraPage = () => {
 
   return (
     <div className="flex justify-center items-center h-screen max-h-screen overflow-hidden bg-black">
+      <Button
+        name="settings"
+        type="button"
+        variant="ghost"
+        onClick={async () => {
+          await navigate("/settings");
+        }}
+        className="absolute top-4 right-4"
+      >
+        <SettingsIcon size={32} color="white" />
+      </Button>
       <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
       <div className="absolute bottom-16 left-1/2">
         <CameraButton onClick={capture} />

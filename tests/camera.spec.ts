@@ -100,3 +100,8 @@ test("caches image", async ({ page }) => {
     });
   }, previousImageValue);
 });
+
+test("has settings button", async ({ page }) => {
+  await page.goto("/camera");
+  await expect(page.locator("button[name='settings']")).toBeVisible();
+});
