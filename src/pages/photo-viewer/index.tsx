@@ -26,8 +26,8 @@ import {
 import useAsyncAction from "@/hooks/useAsyncAction";
 import { useGenAI, useIDB } from "@/providers";
 import { useProducts } from "@/providers/ProductsProvider";
-import { ArrowLeftIcon } from "lucide-react";
-import { useEffect } from "react";
+import { ArrowLeftIcon, ListIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import usePhotoStore from "./store";
 
@@ -45,6 +45,7 @@ const PhotoViewerPage = () => {
     action: getPhoto,
     message: "Fotoğraf yüklenemedi.",
   });
+  const [isSheetOpen, setSheetOpen] = useState(true);
 
   const photoExists = photo.loading === false && photo.obj !== undefined;
 
@@ -67,12 +68,21 @@ const PhotoViewerPage = () => {
       </Button>
       {photoExists ? (
         <>
+          <Button
+            name="sheet"
+            type="button"
+            variant="ghost"
+            className="absolute bottom-4 right-4"
+            onClick={() => setSheetOpen(true)}
+          >
+            <ListIcon size={32} color="white" />
+          </Button>
           <img
             src={photo.obj}
             alt="photo"
             className="w-full h-full object-contain"
           />
-          <Sheet defaultOpen>
+          <Sheet defaultOpen open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetContent side="bottom" className="max-h-1/2">
               <SheetHeader>
                 <SheetTitle>Boykotlu Ürünler</SheetTitle>

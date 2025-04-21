@@ -100,3 +100,16 @@ test("detects products", async ({ page }) => {
   await expect(page.getByText("BİM")).toBeVisible();
   await teardown(page);
 });
+
+test("opens sheet", async ({ page }) => {
+  await setup(page);
+  await page.goto("/photo");
+  await page.waitForSelector("button[name='sheet']");
+  // click outside the sheet to close it
+  await page.locator(".data-\\[state\\=open\\]\\:animate-in").first().click();
+  await expect(page.locator("text=Boykotlu Ürünler")).not.toBeVisible();
+  // click the sheet button to open it
+  await page.locator("button[name='sheet']").click();
+  await expect(page.locator("text=Boykotlu Ürünler")).toBeVisible();
+  await teardown(page);
+});
