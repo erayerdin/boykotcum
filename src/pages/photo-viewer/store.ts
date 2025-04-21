@@ -59,7 +59,7 @@ const usePhotoStore = ({
         if (uri === undefined) {
           const error = new Error("Photo not found.");
           console.error(error);
-          throw error;
+          return;
         }
 
         set({ isLoading: true });
