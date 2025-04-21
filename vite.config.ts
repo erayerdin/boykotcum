@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import { icons } from "./public/assets/icons/icons.json";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -21,7 +22,7 @@ export default defineConfig(({ mode }) => ({
         name: "Boykotçum",
         short_name: "Boykotçum",
         description: "Ne almayacağını sen düşünme.",
-        // icons,
+        icons,
         lang: "tr-TR",
         launch_handler: {
           client_mode: "auto",
