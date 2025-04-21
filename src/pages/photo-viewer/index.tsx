@@ -25,13 +25,14 @@ import {
 import useAsyncAction from "@/hooks/useAsyncAction";
 import { useGenAI, useIDB } from "@/providers";
 import { useProducts } from "@/providers/ProductsProvider";
+import { useEffect } from "react";
 import usePhotoStore from "./store";
 
 const PhotoViewerPage = () => {
   const idb = useIDB();
   const ai = useGenAI();
   const predefinedProducts = useProducts();
-  const { getPhoto, isLoading, products } = usePhotoStore({
+  const { isLoading, products, getPhoto, detect } = usePhotoStore({
     idb,
     ai,
     predefinedProducts,
@@ -42,6 +43,10 @@ const PhotoViewerPage = () => {
   });
 
   const photoExists = photo.loading === false && photo.obj !== undefined;
+
+  useEffect(() => {
+    detect();
+  }, [detect]);
 
   return (
     <div className="bg-black w-screen h-screen overflow-hidden flex flex-col items-center justify-center">
