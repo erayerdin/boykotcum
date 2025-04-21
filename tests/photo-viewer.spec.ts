@@ -113,3 +113,9 @@ test("opens sheet", async ({ page }) => {
   await expect(page.locator("text=Boykotlu Ürünler")).toBeVisible();
   await teardown(page);
 });
+
+test("no open sheet button while no photo", async ({ page }) => {
+  await page.goto("/photo");
+  await page.waitForSelector("text=Fotoğraf çekmediniz.");
+  await expect(page.locator("button[name='sheet']")).not.toBeVisible();
+});
