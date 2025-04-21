@@ -29,9 +29,11 @@ import {
 } from "@/components/ui/alert-dialog";
 import { PRODUCT_LIST_URL } from "@/constants";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 
 const SettingsPage = () => {
+  const navigate = useNavigate();
   const [isUpdateBlacklistDialogOpen, setUpdateBlacklistDialogOpen] =
     useState(false);
 
@@ -44,7 +46,11 @@ const SettingsPage = () => {
             label="Boykot Listesini Güncelle"
             onClick={() => setUpdateBlacklistDialogOpen(true)}
           />
-          <MaterialMenuItem name="about" label="Hakkında" />
+          <MaterialMenuItem
+            name="about"
+            label="Hakkında"
+            onClick={() => navigate("/about")}
+          />
         </MaterialMenu>
       </div>
       <AlertDialog

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { Toaster } from "./components/ui/sonner.tsx";
 import "./index.css";
 import MaterialLayout from "./layouts/material/index.tsx";
+import AboutPage from "./pages/about/index.tsx";
 import CameraPage from "./pages/camera/index.tsx";
 import HomePage from "./pages/home/index.tsx";
 import PhotoViewerPage from "./pages/photo-viewer/index.tsx";
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")!).render(
           <Route element={<MaterialLayout defaultTitle="Ayarlar" />}>
             <Route path="/settings" element={<SettingsPage />} />
           </Route>
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/photo" element={<PhotoViewerPage />} />
         </Routes>
       </BrowserRouter>
