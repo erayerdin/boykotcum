@@ -19,6 +19,7 @@ import { Product } from "@/types";
 import { GoogleGenAI } from "@google/genai";
 import { IDBPDatabase } from "idb";
 import { create, StoreApi, UseBoundStore } from "zustand";
+import { devtools } from "zustand/middleware";
 import detectProducts from "./actions/detectProducts";
 import getPhoto from "./actions/getPhoto";
 
@@ -46,29 +47,31 @@ const usePhotoStore = ({
 }: PhotoStoreCreatorParams) => {
   if (store !== null) return store;
 
-  store = create<PhotoState>((set, get) => ({
-    isLoading: false,
-    products: predefinedProducts,
-    // getters //
-    getPhoto: () => getPhoto(idb),
-    // methods //
-    detect: async () => {
-      const uri = await get().getPhoto();
-      if (uri === undefined) {
-        const error = new Error("Photo not found.");
-        console.error(error);
-        throw error;
-      }
+  store = create<PhotoState>()(
+    devtools((set, get) => ({
+      isLoading: true,
+      products: [],
+      // getters //
+      getPhoto: () => getPhoto(idb),
+      // methods //
+      detect: async () => {
+        const uri = await get().getPhoto();
+        if (uri === undefined) {
+          const error = new Error("Photo not found.");
+          console.error(error);
+          throw error;
+        }
 
-      set({ isLoading: true });
-      const products = await detectProducts({
-        ai,
-        products: predefinedProducts,
-        uri,
-      });
-      set({ products, isLoading: false });
-    },
-  }));
+        set({ isLoading: true });
+        const products = await detectProducts({
+          ai,
+          products: predefinedProducts,
+          uri,
+        });
+        set({ products, isLoading: false });
+      },
+    }))
+  );
 
   return store;
 };
