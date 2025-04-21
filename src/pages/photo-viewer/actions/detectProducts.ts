@@ -42,7 +42,7 @@ const detectProducts = async ({
         description: "",
       },
       {
-        name: "Superfresh",
+        name: "BİM",
         description: "",
       },
     ];
