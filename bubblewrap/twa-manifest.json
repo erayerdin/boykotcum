@@ -17,10 +17,10 @@
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "/home/erayerdin/.local/upload-keystore.jks",
-    "alias": "android"
+    "alias": "upload"
   },
-  "appVersionName": "22",
-  "appVersionCode": 22,
+  "appVersionName": "23",
+  "appVersionCode": 23,
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://boykotcum.web.app/manifest.webmanifest",
@@ -38,5 +38,5 @@
   "fingerprints": [],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
-  "appVersion": "22"
+  "appVersion": "23"
 }
