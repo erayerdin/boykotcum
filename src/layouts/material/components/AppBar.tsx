@@ -43,7 +43,7 @@ type AppBarProps = {
 
 const AppBar: FC<AppBarProps> = ({ defaultTitle }) => {
   return (
-    <div className="flex shadow h-16 max-h-16 items-center px-4 gap-4">
+    <div className="flex shadow h-16 max-h-16 items-center px-4 gap-4 fixed bg-white w-full">
       <BackButton />
       <p className="text-xl font-bold">{defaultTitle}</p>
     </div>

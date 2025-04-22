@@ -26,7 +26,9 @@ type MaterialLayoutProps = {
 const MaterialLayout: FC<MaterialLayoutProps> = ({ defaultTitle }) => {
   return (
     <div className="flex flex-col">
-      <AppBar defaultTitle={defaultTitle} />
+      <div className="h-16">
+        <AppBar defaultTitle={defaultTitle} />
+      </div>
       <Outlet />
     </div>
   );
