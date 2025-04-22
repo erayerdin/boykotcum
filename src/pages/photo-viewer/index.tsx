@@ -107,11 +107,14 @@ const PhotoViewerPage = () => {
                     {products.map((product) => (
                       <div
                         key={product.name}
-                        className="flex justify-between bg-gray-200 text-zinc-800 text-sm p-2 rounded-md"
+                        className="flex items-center justify-between bg-gray-200 text-zinc-800 text-sm p-2 rounded-md"
                       >
                         <span>{product.name}</span>
                         {product.links.length !== 0 && (
                           <div className="flex gap-2">
+                            <p className="text-sm text-white bg-red-500 px-2 rounded-md">
+                              {product.links.length}
+                            </p>
                             <Link to={`/links?name=${product.name}`}>
                               <ChevronRightIcon size={16} />
                             </Link>

@@ -143,3 +143,26 @@ test("has links", async ({ page }) => {
 
   await teardown(page);
 });
+
+test("has links count", async ({ page }) => {
+  const url = "https://api.npoint.io/6f7f9eaf9cb9b6f421b4";
+
+  await page.route(url, async (route) => {
+    await route.fulfill({
+      json: MOCK_PRODUCTS,
+      headers: {
+        ...route.request().headers(),
+        "Cache-Control": "no-cache",
+      },
+    });
+  });
+
+  await setup(page);
+
+  await page.goto("/photo");
+  await page.waitForSelector("text=Ülker");
+
+  await expect(page.getByText("11")).toBeVisible();
+
+  await teardown(page);
+});
