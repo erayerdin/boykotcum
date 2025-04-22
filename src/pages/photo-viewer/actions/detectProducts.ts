@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+import { MOCK_PRODUCTS } from "@/constants";
 import productDetectionPrompt from "@/prompts/productDetectionPrompt";
 import { Product } from "@/types";
 import sleepAsync from "@/utils/sleepAsync";
@@ -38,16 +39,7 @@ const detectProducts = async ({
 }: ListProductsParams): Promise<Product[]> => {
   if (import.meta.env.MODE === "e2e") {
     await sleepAsync(2000);
-    return [
-      {
-        name: "Ülker",
-        description: "",
-      },
-      {
-        name: "BİM",
-        description: "",
-      },
-    ];
+    return MOCK_PRODUCTS;
   }
 
   const prompt = productDetectionPrompt({ products });

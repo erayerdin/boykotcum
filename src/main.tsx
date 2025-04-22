@@ -8,6 +8,7 @@ import AboutPage from "./pages/about/index.tsx";
 import CameraPage from "./pages/camera/index.tsx";
 import HomePage from "./pages/home/index.tsx";
 import PhotoViewerPage from "./pages/photo-viewer/index.tsx";
+import ProductLinksPage from "./pages/product-links/index.tsx";
 import SettingsPage from "./pages/settings/index.tsx";
 import GlobalProviders from "./providers/index.tsx";
 
@@ -23,6 +24,9 @@ createRoot(document.getElementById("root")!).render(
           </Route>
           <Route path="/about" element={<AboutPage />} />
           <Route path="/photo" element={<PhotoViewerPage />} />
+          <Route element={<MaterialLayout defaultTitle="Bağlantılar" />}>
+            <Route path="/links" element={<ProductLinksPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
       <Toaster />
