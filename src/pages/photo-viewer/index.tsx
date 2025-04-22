@@ -26,9 +26,9 @@ import {
 import useAsyncAction from "@/hooks/useAsyncAction";
 import { useGenAI, useIDB } from "@/providers";
 import { useProducts } from "@/providers/ProductsProvider";
-import { ArrowLeftIcon, ListIcon } from "lucide-react";
+import { ArrowLeftIcon, ChevronRightIcon, ListIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import usePhotoStore from "./store";
 
 const PhotoViewerPage = () => {
@@ -107,9 +107,16 @@ const PhotoViewerPage = () => {
                     {products.map((product) => (
                       <div
                         key={product.name}
-                        className="bg-gray-200 text-zinc-800 text-sm p-2 rounded-md"
+                        className="flex justify-between bg-gray-200 text-zinc-800 text-sm p-2 rounded-md"
                       >
-                        {product.name}
+                        <span>{product.name}</span>
+                        {product.links.length !== 0 && (
+                          <div className="flex gap-2">
+                            <Link to={`/links?name=${product.name}`}>
+                              <ChevronRightIcon size={16} />
+                            </Link>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>

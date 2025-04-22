@@ -17,6 +17,7 @@
 
 import { expect, test } from "@playwright/test";
 import { readFile } from "fs/promises";
+import { MOCK_PRODUCTS } from "../src/constants";
 
 const setup = async (page) => {
   await page.goto("/");
@@ -118,4 +119,27 @@ test("no open sheet button while no photo", async ({ page }) => {
   await page.goto("/photo");
   await page.waitForSelector("text=Fotoğraf çekmediniz.");
   await expect(page.locator("button[name='sheet']")).not.toBeVisible();
+});
+
+test("has links", async ({ page }) => {
+  const url = "https://api.npoint.io/6f7f9eaf9cb9b6f421b4";
+
+  await page.route(url, async (route) => {
+    await route.fulfill({
+      json: MOCK_PRODUCTS,
+      headers: {
+        ...route.request().headers(),
+        "Cache-Control": "no-cache",
+      },
+    });
+  });
+
+  await setup(page);
+
+  await page.goto("/photo");
+  await page.waitForSelector("text=Ülker");
+
+  await expect(page.locator(`a[href="/links?name=Ülker"]`)).toBeVisible();
+
+  await teardown(page);
 });
