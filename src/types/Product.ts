@@ -15,9 +15,33 @@
 // You should have received a copy of the GNU General Public License
 // along with Boykotçum.  If not, see <https://www.gnu.org/licenses/>.
 
+type BaseLink = {
+  link: string;
+  title: string;
+  description: string;
+};
+
+type TextLink = BaseLink & {
+  type: "text";
+  platform: "twitter" | "twitter-webarchive" | "other";
+};
+
+type ImageLink = BaseLink & {
+  type: "image";
+  platform: "instagram" | "instagram-webarchive" | "imgbb" | "other";
+};
+
+type VideoLink = BaseLink & {
+  type: "video";
+  platform: "youtube" | "dailymotion" | "streamable" | "other";
+};
+
+type Link = TextLink | ImageLink | VideoLink;
+
 type Product = {
   name: string;
   description: string;
+  links: Link[];
 };
 
 export default Product;
