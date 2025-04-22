@@ -1,0 +1,42 @@
+{
+  "packageId": "com.erayerdin.boykotcum",
+  "host": "boykotcum.web.app",
+  "name": "Boykotçum",
+  "launcherName": "Boykotçum",
+  "display": "standalone",
+  "themeColor": "#42B883",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#333333",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://boykotcum.web.app/assets/icons/android/android-launchericon-512-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/home/erayerdin/.local/upload-keystore.jks",
+    "alias": "upload"
+  },
+  "appVersionName": "23",
+  "appVersionCode": 23,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://boykotcum.web.app/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://boykotcum.web.app/",
+  "minSdkVersion": 21,
+  "orientation": "any",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "appVersion": "23"
+}
