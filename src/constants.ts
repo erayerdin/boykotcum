@@ -34,7 +34,7 @@ export const MOCK_PRODUCTS: Product[] = [
       {
         type: "text",
         platform: "twitter-webarchive",
-        link: "https://twitter.com/sample-post",
+        link: "https://twitter.com/sample-post-archive", // normally it'd be web archive link
         title: "Sample Twitter Archive Post",
         description: "A sample description for a Twitter archive post.",
       },
@@ -55,7 +55,7 @@ export const MOCK_PRODUCTS: Product[] = [
       {
         type: "image",
         platform: "instagram-webarchive",
-        link: "https://instagram.com/sample-image",
+        link: "https://instagram.com/sample-image-archive", // normally it'd be web archive link
         title: "Sample Instagram Archive Image",
         description: "A sample description for an Instagram archive image.",
       },
