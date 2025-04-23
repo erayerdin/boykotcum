@@ -3,10 +3,14 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import pkg from "./package.json";
 import { icons } from "./public/assets/icons/icons.json";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
+  define: {
+    __APPVERSION__: JSON.stringify(pkg.version),
+  },
   plugins: [
     react(),
     tailwindcss(),
