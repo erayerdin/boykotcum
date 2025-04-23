@@ -58,6 +58,7 @@ const AboutPage = () => {
           <p className="text-sm italic">
             &quot;Ne almayacağını sen düşünme.&quot;
           </p>
+          <p className="text-xs">{__APPVERSION__}</p>
         </div>
 
         {/* Links */}
