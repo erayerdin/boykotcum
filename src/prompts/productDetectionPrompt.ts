@@ -28,7 +28,7 @@ const productDetectionPrompt = ({
     "Aşağıda JSON olarak bir ürün/marka listesi görmektesin.",
     ["```", JSON.stringify(products), "```"].join("\n"),
     "Sana bir görsel gönderiyorum. Bu görselde bir ürün/marka var mı? Varsa hangisi?",
-    "Bana JSON dizisi olarak cevap ver. Sana gönderdiğim ürün/marka listesinin formatına uymak zorunda.",
+    "Bana JSON dizisinde sadece ürünün isimleri olarak cevap ver.",
   ].join("\n\n");
 };
 

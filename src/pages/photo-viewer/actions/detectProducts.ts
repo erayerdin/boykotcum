@@ -56,22 +56,15 @@ const detectProducts = async ({
       responseMimeType: "application/json",
       responseSchema: {
         type: Type.ARRAY,
-        items: {
-          type: Type.OBJECT,
-          properties: {
-            name: { type: Type.STRING },
-          },
-        },
+        items: { type: Type.STRING },
       },
     },
   });
   const text = response.text!;
-  const data: Product[] = JSON.parse(text);
+  const data: string[] = JSON.parse(text);
   return products.filter(
     ({ name }) =>
-      data.findIndex(
-        ({ name: n }) => n.toLowerCase() === name.toLowerCase()
-      ) !== -1
+      data.findIndex((n) => n.toLowerCase() === name.toLowerCase()) !== -1
   );
 };
 
