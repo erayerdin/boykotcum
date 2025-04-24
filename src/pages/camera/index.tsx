@@ -20,6 +20,7 @@ import { useIDB } from "@/providers";
 import { SettingsIcon } from "lucide-react";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
+import { useMediaDevices } from "react-use";
 import Webcam from "react-webcam";
 import cacheImage from "./actions/cacheImage";
 import CameraButton from "./components/CameraButton";
@@ -29,6 +30,9 @@ const CameraPage = () => {
   const idb = useIDB();
   const webcamRef = useRef<Webcam>(null);
   const navigate = useNavigate();
+  const devices = useMediaDevices();
+
+  console.log(JSON.stringify(devices, null, 2));
 
   const capture = async () => {
     const { current: webcam } = webcamRef;
@@ -58,7 +62,11 @@ const CameraPage = () => {
       >
         <SettingsIcon size={32} color="white" />
       </Button>
-      <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
+      <Webcam
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        videoConstraints={{ facingMode: { ideal: "environment" } }}
+      />
       <div className="absolute bottom-16 w-full">
         <div className="flex gap-4 justify-center">
           <CameraButton onClick={capture} />
