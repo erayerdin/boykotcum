@@ -1,7 +1,7 @@
 {
   "name": "boykotcum",
   "private": true,
-  "version": "2025.4.24.1",
+  "version": "2025.4.24.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
