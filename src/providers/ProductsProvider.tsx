@@ -50,6 +50,7 @@ const ProductsProvider: FC<ProductsProviderProps> = ({ children }) => {
       const products = await fetchProducts({
         link: PRODUCT_LIST_URL,
       });
+      console.log("products", products);
       setState({ loading: false, obj: products });
     })();
   }, []);
