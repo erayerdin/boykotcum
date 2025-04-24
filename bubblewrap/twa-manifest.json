@@ -35,7 +35,11 @@
   "fullScopeUrl": "https://boykotcum.web.app/",
   "minSdkVersion": 21,
   "orientation": "any",
-  "fingerprints": [],
+  "fingerprints": [
+    {
+      "value": "E4:19:5E:ED:74:48:01:58:55:45:02:7B:E8:5B:15:88:9D:EA:39:B4:9E:CC:74:1A:84:5D:46:AE:8B:D2:0B:AA"
+    }
+  ],
   "additionalTrustedOrigins": [],
   "retainedBundles": [],
   "appVersion": "23"
