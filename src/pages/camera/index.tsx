@@ -17,8 +17,8 @@
 
 import { Button } from "@/components/ui/button";
 import { useIDB } from "@/providers";
-import { SettingsIcon } from "lucide-react";
-import { useRef } from "react";
+import { SettingsIcon, SwitchCameraIcon } from "lucide-react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import Webcam from "react-webcam";
 import cacheImage from "./actions/cacheImage";
@@ -29,6 +29,9 @@ const CameraPage = () => {
   const idb = useIDB();
   const webcamRef = useRef<Webcam>(null);
   const navigate = useNavigate();
+  const [cameraMode, setCameraMode] = useState<"user" | "environment">(
+    "environment"
+  );
 
   const capture = async () => {
     const { current: webcam } = webcamRef;
@@ -45,6 +48,10 @@ const CameraPage = () => {
     navigate("/photo");
   };
 
+  const toggleCamera = () => {
+    setCameraMode((prevMode) => (prevMode === "user" ? "environment" : "user"));
+  };
+
   return (
     <div className="flex justify-center items-center h-screen max-h-screen overflow-hidden bg-black">
       <Button
@@ -54,13 +61,28 @@ const CameraPage = () => {
         onClick={async () => {
           await navigate("/settings");
         }}
-        className="absolute top-4 right-4"
+        className="absolute top-4 right-4 z-10"
       >
         <SettingsIcon size={32} color="white" />
       </Button>
-      <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
-      <div className="absolute bottom-16 left-1/2">
-        <CameraButton onClick={capture} />
+      <Webcam
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        videoConstraints={{ facingMode: { ideal: cameraMode } }}
+      />
+      {/* Right Section */}
+      <div className="absolute right-8 h-full">
+        <div className="flex flex-col justify-center h-full">
+          <button type="button" className="bg-white rounded-full p-2">
+            <SwitchCameraIcon size={32} color="black" onClick={toggleCamera} />
+          </button>
+        </div>
+      </div>
+      {/* Bottom Section */}
+      <div className="absolute bottom-16 w-full">
+        <div className="flex justify-center">
+          <CameraButton onClick={capture} />
+        </div>
       </div>
     </div>
   );

@@ -19,7 +19,9 @@ import test, { expect } from "@playwright/test";
 
 test("has capture button", async ({ page }) => {
   await page.goto("/camera");
-  await expect(page.getByRole("button").locator("div").nth(2)).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "capture button image" })
+  ).toBeVisible();
 });
 
 test("caches image", async ({ page }) => {
@@ -49,7 +51,7 @@ test("caches image", async ({ page }) => {
 
   // test
   await page.goto("/camera");
-  await page.getByRole("button").locator("div").nth(2).click();
+  await page.getByRole("button", { name: "capture button image" }).click();
 
   const imageValue: string | null = await page.evaluate(async () => {
     return new Promise((resolve, reject) => {
