@@ -59,8 +59,10 @@ const CameraPage = () => {
         <SettingsIcon size={32} color="white" />
       </Button>
       <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
-      <div className="absolute bottom-16 left-1/2">
-        <CameraButton onClick={capture} />
+      <div className="absolute bottom-16 w-full">
+        <div className="flex gap-4 justify-center">
+          <CameraButton onClick={capture} />
+        </div>
       </div>
     </div>
   );
