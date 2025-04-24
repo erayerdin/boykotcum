@@ -26,20 +26,23 @@ import IndexedDatabaseProvider, {
 import InitializerProvider from "./InitializerProvider";
 import KeyProvider, { useKey } from "./KeyProvider";
 import ProductsProvider from "./ProductsProvider";
+import SentryProvider from "./SentryProvider";
 
 const GlobalProviders: FC<ChildrenProps> = ({ children }) => {
   return (
-    <DisableDevtoolsProvider>
-      <IndexedDatabaseProvider>
-        <KeyProvider>
-          <ProductsProvider>
-            <InitializerProvider>
-              <GenAIProvider>{children}</GenAIProvider>
-            </InitializerProvider>
-          </ProductsProvider>
-        </KeyProvider>
-      </IndexedDatabaseProvider>
-    </DisableDevtoolsProvider>
+    <SentryProvider>
+      <DisableDevtoolsProvider>
+        <IndexedDatabaseProvider>
+          <KeyProvider>
+            <ProductsProvider>
+              <InitializerProvider>
+                <GenAIProvider>{children}</GenAIProvider>
+              </InitializerProvider>
+            </ProductsProvider>
+          </KeyProvider>
+        </IndexedDatabaseProvider>
+      </DisableDevtoolsProvider>
+    </SentryProvider>
   );
 };
 
